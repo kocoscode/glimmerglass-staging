@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Glimmerglass — Transparent animation, ready for the web</title>
+  <meta name="description" content="Turn your transparent artwork into a ready-to-place animation component. Glimmerglass for Framer, with iPhone, iPad and Mac to come.">
+  <link rel="icon" href="assets/icon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <!-- The product's own player: the three knights that ride out of the film are Glimmerglass conversions, played by it. -->
+  <script src="glimmerglass.min.js" defer></script>
+  <script src="hero.js" defer></script>
+  <script src="proof.js" defer></script>
+</head>
+<body class="home">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+  <header>
+    <a href="index.html" aria-label="Glimmerglass home"><img src="assets/logo.svg" alt="Glimmerglass" width="184"></a>
+    <nav aria-label="Main"><span class="nav-soon" role="link" aria-disabled="true" tabindex="0" data-soon="Coming soon" title="Coming soon">Apple app</span><a href="framer.html">Framer plugin</a><a href="privacy.html">Privacy</a></nav>
+  </header>
+  <main id="main">
+    <div class="hero-intro">
+      <div>
+        <p class="eyebrow">From your artwork to the web</p>
+        <h1>No frame. No background.<br>Just your animation.</h1>
+      </div>
+      <div>
+        <div class="actions">
+          <a class="button" href="framer.html">Inside Framer</a>
+          <!-- The App Store button: kept, but not available yet. Not a link for now; it stays reachable by mouse and keyboard so its "Coming soon" note can show. -->
+          <span class="soon-wrap">
+            <a class="button soon" id="app-store" role="link" aria-disabled="true" tabindex="0" aria-describedby="app-store-note">iPhone, iPad &amp; Mac</a>
+            <span class="soon-note" id="app-store-note" role="tooltip" hidden>Coming soon</span>
+          </span>
+        </div>
+        <p class="price-line">Lifetime license, one payment.</p>
+      </div>
+    </div>
+    <figure class="hero-film" aria-labelledby="film-caption">
+      <div class="hero-stage">
+        <div class="film-frame">
+          <video id="hero-video" muted loop playsinline controls preload="metadata" poster="assets/glimmerglass-workflow-poster.jpg" aria-label="A silent film: exported transparent animations go through Glimmerglass and Framer into a finished scene, whose knights ride out of the video and across the page." aria-describedby="film-caption">
+            <source src="assets/glimmerglass-workflow.mp4" type="video/mp4">
+            <source src="assets/glimmerglass-workflow.webm" type="video/webm">
+            <p>Your browser cannot play this video. <a href="assets/glimmerglass-workflow.mp4">Download the film</a>.</p>
+          </video>
+          <button class="film-toggle" type="button" aria-controls="hero-video" hidden>Play video</button>
+        </div>
+        <!-- Three knights, each a Glimmerglass conversion played by the product's own player (the encoder's snippet, pointed at its folder).
+             They appear in the film's last scene and ride out past its edge. Last in the list is drawn in front: the leader. -->
+        <div class="riders" id="riders" aria-hidden="true">
+          <div class="rider" data-knight="green">
+            <img src="assets/knights/green/poster-814.webp"
+                 srcset="assets/knights/green/poster-480.webp 480w, assets/knights/green/poster-640.webp 640w, assets/knights/green/poster-814.webp 814w"
+                 sizes="(max-width: 1440px) 50vw, 720px"
+                 width="814" height="1000"
+                 alt=""
+                 style="display:block;width:100%;height:auto">
+          </div>
+          <div class="rider" data-knight="blue">
+            <img src="assets/knights/blue/poster-814.webp"
+                 srcset="assets/knights/blue/poster-480.webp 480w, assets/knights/blue/poster-640.webp 640w, assets/knights/blue/poster-814.webp 814w"
+                 sizes="(max-width: 1440px) 50vw, 720px"
+                 width="814" height="1000"
+                 alt=""
+                 style="display:block;width:100%;height:auto">
+          </div>
+          <div class="rider" data-knight="maroon">
+            <img src="assets/knights/maroon/poster-814.webp"
+                 srcset="assets/knights/maroon/poster-480.webp 480w, assets/knights/maroon/poster-640.webp 640w, assets/knights/maroon/poster-814.webp 814w"
+                 sizes="(max-width: 1440px) 50vw, 720px"
+                 width="814" height="1000"
+                 alt=""
+                 style="display:block;width:100%;height:auto">
+          </div>
+        </div>
+      </div>
+      <figcaption id="film-caption"><span>From your files to a finished scene.</span> Open your exported animation in Glimmerglass, create its component, then place it in Framer. The knights that ride out are Glimmerglass conversions, played by its own player.</figcaption>
+    </figure>
+    <ol class="workflow" aria-label="How Glimmerglass works">
+      <li><span class="step-number" aria-hidden="true">01</span><h2>Add your artwork</h2><p>Drop in an animation or a folder of PNG frames, transparency intact. Animated .webp welcome.</p></li>
+      <li><span class="step-number" aria-hidden="true">02</span><h2>Find the right fit</h2><p>Preview different sizes and backgrounds. Adjust quality and compare the estimated file size before you commit.</p></li>
+      <li><span class="step-number" aria-hidden="true">03</span><h2>Create and place</h2><p>One component, every size inside it. Place it in your scene and you’re done moving things around.</p></li>
+    </ol>
+    <!-- The proof strip: one .glim played by the product's player, over a background the visitor picks. The buttons swap a class on the stage; the player is never touched.
+         STAND-IN animation: the hero's painted cloud, floating. Replace it (and the photo) in one step: npm run website:proof -- --animation <file> --alt "<text>" --photo <image> -->
+    <section class="proof" aria-label="The same animation on four backgrounds">
+      <div class="proof-stage on-checker" id="proof-stage">
+        <span class="proof-bg checker"></span><span class="proof-bg white"></span><span class="proof-bg black"></span><span class="proof-bg photo"></span>
+        <div class="proof-player" data-glimmerglass="assets/proof/proof.glim">
+          <img src="assets/proof/proof-poster.webp" width="960" height="540" alt="A soft painted cloud drifting gently" loading="lazy" style="display:block;width:100%;height:auto">
+        </div>
+      </div>
+      <div class="proof-toggle" role="group" aria-label="Background">
+        <button type="button" data-bg="checker" aria-pressed="true">Checker</button><button type="button" data-bg="white" aria-pressed="false">White</button><button type="button" data-bg="black" aria-pressed="false">Black</button><button type="button" data-bg="photo" aria-pressed="false">Photo</button>
+      </div>
+    </section>
+    <div class="benefits">
+      <section class="glass"><svg class="benefit-icon" viewBox="0 0 56 56" width="56" height="56" aria-hidden="true" focusable="false" fill="none" stroke="#122887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="36" height="25" rx="3.5" fill="#c3edfc"/><path d="M19 16.5 l9 5 -9 5 Z" fill="#fff"/><path d="M23 34 v6 M15 42 h16"/><rect x="33" y="22" width="17" height="28" rx="4.5" fill="#bea0ff"/><path d="M39.5 26.5 h4"/><path d="M38.5 35 l6 3.5 -6 3.5 Z" fill="#fff"/><path d="M48 4.5 L49.65 8.35 L53.5 10 L49.65 11.65 L48 15.5 L46.35 11.65 L42.5 10 L46.35 8.35 Z" fill="#ffa574"/></svg><h2>The right file for every device</h2><p>Glimmerglass dynamically surfaces the file each device plays best. Phones get the light one, desktops get the pretty one, nobody waits.</p></section>
+      <section class="glass"><svg class="benefit-icon" viewBox="0 0 56 56" width="56" height="56" aria-hidden="true" focusable="false" fill="none" stroke="#122887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="27" width="24" height="24" rx="3.5" fill="#fff"/><path d="M5 30.5 a3.5 3.5 0 0 1 3.5 -3.5 H17 v12 H5 Z M17 39 h12 v8.5 a3.5 3.5 0 0 1 -3.5 3.5 H17 Z" fill="#bea0ff" stroke="none"/><rect x="5" y="27" width="24" height="24" rx="3.5"/><path d="M22 44 V19 a12 12 0 0 1 24 0 V44 l-4 -3.5 -4 3.5 -4 -3.5 -4 3.5 -4 -3.5 Z" fill="#fff" fill-opacity=".82"/><circle cx="30.5" cy="20" r="1.9" fill="#122887" stroke="none"/><circle cx="38.5" cy="20" r="1.9" fill="#122887" stroke="none"/><path d="M31.5 26 q3 3 6 0"/><path d="M10 9 L11.5 12.5 L15 14 L11.5 15.5 L10 19 L8.5 15.5 L5 14 L8.5 12.5 Z" fill="#ffa574"/></svg><h2>Transparency, everywhere</h2><p>Real alpha in every browser. No checkerboards, no hacks, no green screen cosplay.</p></section>
+      <section class="glass"><svg class="benefit-icon" viewBox="0 0 56 56" width="56" height="56" aria-hidden="true" focusable="false" fill="none" stroke="#122887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="46" height="42" rx="7" fill="#e3e3ff"/><rect x="11" y="13" width="34" height="30" rx="3.5" fill="#c3edfc"/><rect x="11" y="21" width="23" height="22" rx="3.5" fill="#bea0ff"/><rect x="11" y="30" width="13" height="13" rx="3.5" fill="#ffa574"/><circle cx="15.5" cy="35" r="1.1" fill="#122887" stroke="none"/><circle cx="19.5" cy="35" r="1.1" fill="#122887" stroke="none"/><path d="M15 38.5 q2.5 2 5 0"/></svg><h2>One component, not twelve</h2><p>The Framer plugin gives you a highly adjustable component. Every responsive size lives inside it, so you move one thing around your scene, not a stack of them.</p></section>
+      <section class="glass"><svg class="benefit-icon" viewBox="0 0 56 56" width="56" height="56" aria-hidden="true" focusable="false" fill="none" stroke="#122887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 33 l-5 18 6.5 -4.5 4 6 3 -15 Z" fill="#7575c8"/><path d="M35 33 l5 18 -6.5 -4.5 -4 6 -3 -15 Z" fill="#7575c8"/><path d="M28.0 4.0 L31.9 7.5 L37.0 6.4 L38.6 11.4 L43.6 13.0 L42.5 18.1 L46.0 22.0 L42.5 25.9 L43.6 31.0 L38.6 32.6 L37.0 37.6 L31.9 36.5 L28.0 40.0 L24.1 36.5 L19.0 37.6 L17.4 32.6 L12.4 31.0 L13.5 25.9 L10.0 22.0 L13.5 18.1 L12.4 13.0 L17.4 11.4 L19.0 6.4 L24.1 7.5 Z" fill="#ffa574"/><circle cx="28" cy="22" r="10.5" fill="#fff5c9" stroke-width="1.5"/><path d="M21.5 23.5 q1.5 -6 3.5 -1 t3.5 0 t3.5 -1.5 l2.5 3"/></svg><h2>Proof it’s the original.</h2><p>Every file will carry a sealed receipt. Change a single byte and the seal breaks - and anyone can check. No names, no personal details, just proof the work is the work.</p></section>
+      <section class="glass"><svg class="benefit-icon" viewBox="0 0 56 56" width="56" height="56" aria-hidden="true" focusable="false" fill="none" stroke="#122887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M28 18 v-6"/><circle cx="28" cy="9.5" r="2.8" fill="#ffa574"/><rect x="6.5" y="27" width="5" height="9" rx="2.5" fill="#bea0ff"/><rect x="44.5" y="27" width="5" height="9" rx="2.5" fill="#bea0ff"/><rect x="11.5" y="18" width="33" height="27" rx="8" fill="#c3edfc"/><circle cx="21.5" cy="29" r="3.4" fill="#fff"/><circle cx="34.5" cy="29" r="3.4" fill="#fff"/><circle cx="22.2" cy="29.4" r="1.3" fill="#122887" stroke="none"/><circle cx="35.2" cy="29.4" r="1.3" fill="#122887" stroke="none"/><path d="M21.5 38 l2.6 -2 2.6 2 2.6 -2 2.6 2 2.6 -2"/><path d="M47 6.5 L48.65 10.35 L52.5 12 L48.65 13.65 L47 17.5 L45.35 13.65 L41.5 12 L45.35 10.35 Z" fill="#ffa574"/><path d="M9 9.5 L10.05 11.95 L12.5 13 L10.05 14.05 L9 16.5 L7.95 14.05 L5.5 13 L7.95 11.95 Z" fill="#fde4f9"/></svg><h2>Built for AI output</h2><p>Your AI tools keep handing you animated .webp files. Glimmerglass turns them into proper transparent video, light enough for the real web.</p></section>
+      <section class="glass"><svg class="benefit-icon" viewBox="0 0 56 56" width="56" height="56" aria-hidden="true" focusable="false" fill="none" stroke="#122887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 23 q11.5 -5 23 0 t23 0 v20 q-11.5 5 -23 0 t-23 0 Z" fill="#bea0ff" transform="rotate(-9 28 33) translate(2 -8)"/><path d="M5 23 q11.5 -5 23 0 t23 0 v20 q-11.5 5 -23 0 t-23 0 Z" fill="#d6fff3"/><path d="M9.5 27.2 q9.5 -3.6 18.5 0 t18.5 0 v11.6 q-9.5 3.6 -18.5 0 t-18.5 0 Z" stroke-width="1.2" stroke-dasharray="1.5 3"/><ellipse cx="28" cy="33" rx="8" ry="7.2" fill="#fff5c9" stroke-width="1.5"/><circle cx="13.5" cy="32" r="1.5" fill="#122887" stroke="none"/><circle cx="42.5" cy="34" r="1.5" fill="#122887" stroke="none"/><path d="M48 3.5 L49.65 7.35 L53.5 9 L49.65 10.65 L48 14.5 L46.35 10.65 L42.5 9 L46.35 7.35 Z" fill="#ffa574"/><path d="M6 9.5 l3 2 M4 15.5 h3.5"/></svg><h2>Lifetime license, one payment</h2>
+<p>One license per person, yours for good. Buy your key on <a href="https://houseofkoco.gumroad.com/l/glimmerglass">Gumroad</a>. It arrives by email.</p></section>
+    </div>
+    <section class="glass" id="support"><h2>Need a hand?</h2><p>Tell us your device, input format and the error you see. Keep license keys and private artwork out of your first message.</p><a class="contact" href="mailto:mike@houseofkoco.com?subject=Glimmerglass%20support">mike@houseofkoco.com</a></section>
+  </main>
+  <footer><span>Glimmerglass</span><a href="privacy.html">Privacy</a><a href="framer.html#license">License help</a></footer>
+  </div>
+</body>
+</html>
+
