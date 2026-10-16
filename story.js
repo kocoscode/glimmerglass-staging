@@ -1,6 +1,6 @@
 // The Framer page hero: one statement revealed sentence by sentence. Each .s carries data-at, its second in
-// the play-through. Clip A (the airship in a black box) glitches in and stays; the page dims for the worried
-// lines; after a beat, "Not anymore.", the page brightens and clip B (the airship through Glimmerglass) appears; the flourish draws in beside "dreams"; the button comes last. Any scroll, key or tap
+// the play-through. Clip A (the squirrel in a black box) glitches in and stays; the page dims for the worried
+// lines; after a beat, "Not anymore.", the page brightens and clip B (the squirrel through Glimmerglass) appears; the flourish draws in beside "dreams"; the button comes last. Any scroll, key or tap
 // shows everything at once. With reduced motion, or for a clip that cannot play, the clip is shown as words.
 (function () {
   var story = document.getElementById("story");
@@ -22,7 +22,8 @@
   videoA.addEventListener("error", function () { asWords(clipA); });
   if (source) source.addEventListener("error", function () { asWords(clipA); });
   if (window.Glimmerglass) {
-    var player = Glimmerglass.mount(playerB, { manifest: playerB.getAttribute("data-glim"), control: "never" });
+    // The squirrel is drawn in a square frame; the box is taller than wide, so the frame is cropped at the sides, never the squirrel.
+    var player = Glimmerglass.mount(playerB, { manifest: playerB.getAttribute("data-glim"), control: "never", fit: "cover" });
     player.on("fallback", function () { asWords(clipB); });
     player.on("error", function () { asWords(clipB); });
   } else asWords(clipB);

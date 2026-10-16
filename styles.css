@@ -60,7 +60,7 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .blend{color:#2c2c2c}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){.blend{background:linear-gradient(90deg,#2c2c2c 0%,#2c2c2c 22%,rgba(44,44,44,.1) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}}
 .inline-clip{position:relative;display:inline-block;width:1.4em;height:2.48em;vertical-align:-.24em;margin:.04em .04em 0 .26em;overflow:hidden}
-.clip-a{background:#000;border-radius:.05em}.clip-a video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.clip-a{background:#000;border-radius:.05em}.clip-a video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
 .clip-b-player{display:block;width:100%;height:100%}
 .clip-words{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .inline-clip.as-words{width:auto;height:auto;overflow:visible;vertical-align:baseline;background:none;margin:0 0 0 .25em;clip-path:none}
