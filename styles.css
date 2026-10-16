@@ -20,3 +20,5 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 
 /* ---- footer credit: the logo at a smaller size, and who made it ---- */
 .footer-brand{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px 16px}.footer-brand img{display:block;width:120px;height:auto}
+/* ---- closing band: one last nudge before support, in the card style, the same width as "Need a hand?" ---- */
+.closing{display:flex;align-items:center;justify-content:space-between;gap:32px}.closing h2{margin:0 0 12px}.closing p{margin:0;max-width:640px}.closing .button{flex:none}@media(max-width:700px){.closing{flex-direction:column;align-items:flex-start;gap:20px}}
