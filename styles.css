@@ -82,4 +82,4 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .story-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:20px}.story-buy .price-line{flex-basis:100%;margin:0}
 @media(max-width:700px){.story{padding-bottom:32px;margin-top:0}.story-text{font-size:clamp(1.3rem,7.3vw,2.1rem);line-height:1.5;max-width:none}}
 @media(min-width:360px) and (max-width:700px){.sword-line{white-space:nowrap}}
-.licenses details p,.licenses pre{padding-left:20px}.licenses pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem;line-height:1.5;margin:16px 0 0;max-width:75ch;color:#4a4550}
+.licenses details p,.licenses pre{padding-left:20px}.licenses pre{white-space:pre;overflow-x:auto;font-size:.8rem;line-height:1.5;margin:16px 0 0;max-width:75ch;color:#4a4550}
