@@ -2,7 +2,7 @@
 // and the video slot swaps its placeholder for the film as soon as assets/framer/plugin-in-framer.mp4 exists.
 // While the slot's figure is hidden (for launch, until the film is made) nothing is asked for, so nothing 404s.
 (function () {
-  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = window.glimmerglassStill ? window.glimmerglassStill() : !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);  // motion.js answers for the whole site
   var plain = document.querySelector(".plain-export");
   if (plain && !reduce && "IntersectionObserver" in window) {
     new IntersectionObserver(function (entries) {

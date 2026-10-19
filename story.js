@@ -6,7 +6,7 @@
 (function () {
   var story = document.getElementById("story");
   if (!story) return;
-  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = window.glimmerglassStill ? window.glimmerglassStill() : !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);  // motion.js answers for the whole site
   var clipA = story.querySelector(".clip-a"), videoA = story.querySelector(".clip-a-video");
   var clipB = story.querySelector(".clip-b"), playerB = story.querySelector(".clip-b-player");
   var swordSlot = story.querySelector(".sword-player");
@@ -17,11 +17,11 @@
   if (source) source.addEventListener("error", function () { asWords(clipA); });
   var sword = null;
   if (window.Glimmerglass) {
-    var player = Glimmerglass.mount(playerB, { manifest: playerB.getAttribute("data-glim"), control: "never" });
+    var player = Glimmerglass.mount(playerB, { manifest: playerB.getAttribute("data-glim"), control: "never", reducedMotion: "ignore" });
     player.on("fallback", function () { asWords(clipB); });
     player.on("error", function () { asWords(clipB); });
     // Plays once, when its line arrives, and holds on the raised sword.
-    sword = Glimmerglass.mount(swordSlot, { manifest: swordSlot.getAttribute("data-glim"), control: "never", autoplay: false, loop: false });
+    sword = Glimmerglass.mount(swordSlot, { manifest: swordSlot.getAttribute("data-glim"), control: "never", autoplay: false, loop: false, reducedMotion: "ignore" });
   } else asWords(clipB);
 
   if (reduce) { story.classList.add("static"); asWords(clipA); asWords(clipB); return; }

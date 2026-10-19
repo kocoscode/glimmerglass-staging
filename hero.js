@@ -10,8 +10,9 @@
 const video = document.querySelector('#hero-video');
 const toggle = document.querySelector('.film-toggle');
 if (video && toggle) {
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  let wantsPlayback = !motion.matches;
+  // Reduce Motion is answered once for the whole site (motion.js): the film waits for its button unless motion is on.
+  const still = () => (window.glimmerglassStill ? window.glimmerglassStill() : matchMedia('(prefers-reduced-motion: reduce)').matches);
+  let wantsPlayback = !still();
   let visible = true;
   const sync = () => { toggle.textContent = video.paused ? 'Play video' : 'Pause video'; };
   const shouldPlay = () => wantsPlayback && visible && !document.hidden;
@@ -33,7 +34,6 @@ if (video && toggle) {
     wantsPlayback = video.paused;
     update();
   });
-  motion.addEventListener('change', () => { wantsPlayback = !motion.matches; update(); });
   document.addEventListener('visibilitychange', update);
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); }, { threshold: 0.1 }).observe(video);
   sync();
@@ -54,7 +54,7 @@ if (video && toggle) {
     const riders = [...document.querySelectorAll('.rider')];
     if (window.Glimmerglass && stage && shell && riders.length) {
       const STRIDE_SECONDS = 4 / 3;  // one stride of the walk: 16 drawings at 12 a second, played at their own speed
-      const START = { maroon: 0.05, blue: 0.9, green: 1.75 };  // where each knight's box starts, in box widths from the film's left edge
+      const START = { blue: 0.05, green: 0.9 };  // where each knight's box starts, in box widths from the film's left edge
       const DRAWN_TO = 0.93;  // how far across its box a knight's drawing reaches (its tail)
       const mounted = riders.map((element) => ({
         element,
