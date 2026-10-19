@@ -79,7 +79,7 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .obj.as-words{width:auto;height:auto;vertical-align:baseline}.obj.as-words .clip-words{position:static;width:auto;height:auto;clip:auto;white-space:normal}.obj.as-words .vis,.obj.as-words .ugh{display:none}
 .clip-a.glitch .vis{animation:story-glitch .5s steps(2,end) 1}
 @keyframes story-glitch{0%{transform:rotate(-3deg)}20%{transform:rotate(-3deg) translate(-.05em,.02em);clip-path:inset(12% 0 38% 0)}40%{transform:rotate(-3deg) translate(.05em,-.02em);clip-path:inset(48% 0 6% 0)}60%{transform:rotate(-3deg);clip-path:none;filter:hue-rotate(60deg) saturate(1.6)}100%{transform:rotate(-3deg);filter:none}}
-.story-buy{display:flex;flex-direction:column;align-items:stretch;width:100%;max-width:260px;margin-top:20px;padding:20px 20px 22px;background:#fff;border-radius:16px}.story-buy .button{justify-content:center}.story-buy .price{font-size:3rem}.story-buy .price-line{font-family:Goudy,Georgia,serif;font-size:1.5rem;line-height:1.25;color:#2c2c2c;margin:6px 0 18px}
+.story-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:20px}.story-buy .price-line{flex-basis:100%;margin:0}
 @media(max-width:700px){.story{padding-bottom:32px;margin-top:0}.story-text{font-size:clamp(1.3rem,7.3vw,2.1rem);line-height:1.5;max-width:none}}
 @media(min-width:360px) and (max-width:700px){.sword-line{white-space:nowrap}}
 .licenses details p,.licenses pre{padding-left:20px}.licenses pre{white-space:pre;overflow-x:auto;font-size:.8rem;line-height:1.5;margin:16px 0 0;max-width:75ch;color:#4a4550}
@@ -89,11 +89,3 @@ html.still .benefit-icon{transition:none}html.still .benefits .glass:hover .bene
 /* Reduce Motion is answered once for the site (motion.js): this note offers the animations back, and every page with motion has a switch in its footer. */
 .motion-note{position:fixed;right:20px;bottom:20px;z-index:50;max-width:340px;padding:18px 20px;border-radius:18px;background:#fffffff2;color:#2c2c2c;box-shadow:0 12px 40px #3d2f5a30;border:1px solid #2c2c2c14;font-size:.92rem;line-height:1.45}.motion-note p{margin:0 0 14px}.motion-note strong{display:block;font-size:1rem;margin-bottom:2px}.motion-note-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.motion-note .button{min-height:40px;padding:8px 16px;font-size:.88rem}.motion-later{border:0;background:none;padding:8px 4px;color:#625968;font:700 .88rem Satoshi,system-ui;cursor:pointer}.motion-later:hover{color:#2c2c2c}@media(max-width:700px){.motion-note{left:12px;right:12px;bottom:12px;max-width:none}}
 .motion-toggle{border:1px solid #2c2c2c26;border-radius:999px;background:none;padding:6px 14px;color:#625968;font:700 .82rem Satoshi,system-ui;cursor:pointer;white-space:nowrap}.motion-toggle:hover{color:#2c2c2c;border-color:#2c2c2c55}.motion-toggle[aria-pressed="true"]::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#5b1267;margin-right:7px;vertical-align:1px}.motion-toggle[aria-pressed="false"]::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;border:1.5px solid #625968;box-sizing:border-box;margin-right:7px;vertical-align:1px}
-/* Nav: Home first, the Apple app (coming soon) last, its note anchored to the right edge. */
-nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
-/* Home's closing card: copy and button left-aligned, centred top to bottom, the elder knight standing on the right with room
-   below the card for his light. More space above it than between the feature cards. */
-.closing{position:relative;display:flex;align-items:center;min-height:480px;margin:72px 0 104px;padding:56px 46% 56px 40px;overflow:visible}
-.closing .closing-copy{max-width:460px}.closing .closing-copy p{margin:0 0 28px}.closing .button{flex:none}
-.closing-knight{position:absolute;right:9%;top:8px;height:calc(100% + 96px);aspect-ratio:480/674;pointer-events:none;z-index:1}
-@media(max-width:700px){.closing{display:block;min-height:0;margin:48px 0 32px;padding:36px 24px 0}.closing-knight{position:relative;right:auto;top:auto;height:auto;width:72%;max-width:300px;margin:24px auto -1px}}
