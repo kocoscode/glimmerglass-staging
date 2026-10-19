@@ -4,7 +4,7 @@
   if (!el || !window.Glimmerglass) return;
   var names = { "hevc-alpha": "HEVC with transparency (.mp4)", "vp9-alpha": "VP9 with transparency (.webm)" };
   var manifest = null;
-  var player = Glimmerglass.mount(el, { manifest: "assets/framer/maroon-knight.glim", alt: "The maroon knight on horseback, riding in place" });
+  var player = Glimmerglass.mount(el, { manifest: el.getAttribute("data-glim"), alt: "The maroon knight on horseback, riding in place" });
   player.on("ready", function (m) { manifest = m; });
   player.on("rendition", function (r) {
     var match = manifest && manifest.renditions.filter(function (x) { return x.width === r.width && x.format === r.format; })[0];

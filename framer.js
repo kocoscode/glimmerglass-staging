@@ -1,5 +1,6 @@
 // The Framer page: the before-and-after clip plays only while it is on screen (never with reduced motion),
 // and the video slot swaps its placeholder for the film as soon as assets/framer/plugin-in-framer.mp4 exists.
+// While the slot's figure is hidden (for launch, until the film is made) nothing is asked for, so nothing 404s.
 (function () {
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var plain = document.querySelector(".plain-export");
@@ -11,7 +12,7 @@
     }).observe(plain);
   }
   var slot = document.getElementById("plugin-film");
-  if (!slot || !window.fetch) return;
+  if (!slot || slot.closest("[hidden]") || !window.fetch) return;
   var head = function (url) { return fetch(url, { method: "HEAD" }).then(function (r) { return r.ok; }, function () { return false; }); };
   var mp4 = slot.getAttribute("data-mp4"), webm = slot.getAttribute("data-webm");
   Promise.all([head(mp4), head(webm)]).then(function (found) {

@@ -19,10 +19,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="The Glimmerglass logo, Transparent Video, with a cat asleep on top of the checkered mark">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=714f84a59c">
   <!-- The product's own player: the three knights that ride out of the film are Glimmerglass conversions, played by it. -->
-  <script src="glimmerglass.min.js" defer></script>
-  <script src="hero.js" defer></script>
+  <script src="glimmerglass.min.js?v=c1d38a45a1" defer></script>
+  <script src="hero.js?v=08d78c91a2" defer></script>
 </head>
 <body class="home framed">
   <!-- Shared paint for the benefit pictures: soft, glossy objects lit from the top left, each standing on a faint shadow. -->
@@ -88,27 +88,27 @@
         <!-- Three knights, each a Glimmerglass conversion played by the product's own player (the encoder's snippet, pointed at its folder).
              They appear in the film's last scene and ride out past its edge. Last in the list is drawn in front: the leader. -->
         <div class="riders" id="riders" aria-hidden="true">
-          <div class="rider" data-knight="green">
+          <div class="rider" data-knight="green" data-glim="assets/knights/green-knight.glim?v=071fe6a909">
             <img src="assets/knights/green/poster-814.webp"
                  srcset="assets/knights/green/poster-480.webp 480w, assets/knights/green/poster-640.webp 640w, assets/knights/green/poster-814.webp 814w"
                  sizes="(max-width: 1440px) 50vw, 720px"
-                 width="814" height="1000"
+                 width="814" height="1000" fetchpriority="low" decoding="async"
                  alt=""
                  style="display:block;width:100%;height:auto">
           </div>
-          <div class="rider" data-knight="blue">
+          <div class="rider" data-knight="blue" data-glim="assets/knights/blue-knight.glim?v=029d0c593f">
             <img src="assets/knights/blue/poster-814.webp"
                  srcset="assets/knights/blue/poster-480.webp 480w, assets/knights/blue/poster-640.webp 640w, assets/knights/blue/poster-814.webp 814w"
                  sizes="(max-width: 1440px) 50vw, 720px"
-                 width="814" height="1000"
+                 width="814" height="1000" fetchpriority="low" decoding="async"
                  alt=""
                  style="display:block;width:100%;height:auto">
           </div>
-          <div class="rider" data-knight="maroon">
+          <div class="rider" data-knight="maroon" data-glim="assets/knights/maroon-knight.glim?v=a75df17c04">
             <img src="assets/knights/maroon/poster-814.webp"
                  srcset="assets/knights/maroon/poster-480.webp 480w, assets/knights/maroon/poster-640.webp 640w, assets/knights/maroon/poster-814.webp 814w"
                  sizes="(max-width: 1440px) 50vw, 720px"
-                 width="814" height="1000"
+                 width="814" height="1000" fetchpriority="low" decoding="async"
                  alt=""
                  style="display:block;width:100%;height:auto">
           </div>
@@ -128,7 +128,7 @@
         <img class="sky-cloud far" src="assets/sky/cloud-far.webp" width="900" height="518" alt="" loading="lazy">
         <img class="sky-cloud far later" src="assets/sky/cloud-far.webp" width="900" height="518" alt="" loading="lazy">
         <div class="sky-ship">
-          <div class="sky-player" data-glimmerglass="assets/sky/airship.glim">
+          <div class="sky-player" data-glimmerglass="assets/sky/airship.glim?v=9b68cfe522">
             <img src="assets/sky/airship-poster.webp" srcset="assets/sky/airship-poster-240.webp 240w, assets/sky/airship-poster.webp 480w" sizes="(max-width: 700px) 60vw, 240px" width="480" height="852" alt="A striped balloon airship sailing through the night sky" loading="lazy" style="display:block;width:100%;height:auto">
           </div>
         </div>
