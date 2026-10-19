@@ -73,7 +73,7 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .o-squirrel{--w:1.29em;--x:-.46em;--b:-.8em;--vw:2.35em;--vh:2.35em}
 .sword-line{display:block;margin-top:1.2em;padding-bottom:.75em}
 .o-sword{--w:2.86em;--x:.1em;--b:-1em;--vw:2.68em;--vh:3em}
-.sword-tile{border-radius:.3em;overflow:hidden;box-shadow:inset 0 0 0 .025em #353535;transform:rotate(2deg)}
+.sword-tile{border-radius:.3em;overflow:hidden;box-shadow:inset 0 0 0 .025em #fff;transform:rotate(2deg)}
 .sword-player{position:absolute;right:0;bottom:0;display:block;width:92.2%;height:94%}
 .clip-words{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .obj.as-words{width:auto;height:auto;vertical-align:baseline}.obj.as-words .clip-words{position:static;width:auto;height:auto;clip:auto;white-space:normal}.obj.as-words .vis,.obj.as-words .ugh{display:none}
