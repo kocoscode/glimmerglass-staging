@@ -91,8 +91,9 @@ html.still .benefit-icon{transition:none}html.still .benefits .glass:hover .bene
 .motion-toggle{border:1px solid #2c2c2c26;border-radius:999px;background:none;padding:6px 14px;color:#625968;font:700 .82rem Satoshi,system-ui;cursor:pointer;white-space:nowrap}.motion-toggle:hover{color:#2c2c2c;border-color:#2c2c2c55}.motion-toggle[aria-pressed="true"]::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#5b1267;margin-right:7px;vertical-align:1px}.motion-toggle[aria-pressed="false"]::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;border:1.5px solid #625968;box-sizing:border-box;margin-right:7px;vertical-align:1px}
 /* Nav: Home first, the Apple app (coming soon) last, its note anchored to the right edge. */
 nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
-/* Home's closing card: copy and button stacked on the left, the elder knight standing on the right, his feet below the card. */
-.closing{position:relative;display:block;min-height:360px;padding:56px 44% 56px 40px;margin-bottom:84px;overflow:visible}
-.closing .closing-copy{max-width:440px}.closing .closing-copy p{margin:0 0 24px}.closing .button{flex:none}
-.closing-knight{position:absolute;right:9%;top:6px;height:calc(100% + 72px);aspect-ratio:480/674;pointer-events:none;z-index:1}
-@media(max-width:700px){.closing{padding:32px 24px 0;margin-bottom:24px}.closing-knight{position:relative;right:auto;top:auto;height:auto;width:72%;max-width:300px;margin:24px auto -1px}}
+/* Home's closing card: copy and button centred in the left part, the elder knight standing on the right with room
+   below the card for his light. More space above it than between the feature cards. */
+.closing{position:relative;display:flex;align-items:center;min-height:480px;margin:72px 0 152px;padding:56px 46% 56px 40px;overflow:visible}
+.closing .closing-copy{width:100%;max-width:460px;margin:0 auto;text-align:center}.closing .closing-copy p{margin:0 auto 28px;max-width:440px}.closing .button{flex:none}
+.closing-knight{position:absolute;right:9%;top:8px;height:calc(100% + 96px);aspect-ratio:480/674;pointer-events:none;z-index:1}
+@media(max-width:700px){.closing{display:block;min-height:0;margin:48px 0 32px;padding:36px 24px 0}.closing-knight{position:relative;right:auto;top:auto;height:auto;width:72%;max-width:300px;margin:24px auto -1px}}
