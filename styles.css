@@ -79,7 +79,7 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .obj.as-words{width:auto;height:auto;vertical-align:baseline}.obj.as-words .clip-words{position:static;width:auto;height:auto;clip:auto;white-space:normal}.obj.as-words .vis,.obj.as-words .ugh{display:none}
 .clip-a.glitch .vis{animation:story-glitch .5s steps(2,end) 1}
 @keyframes story-glitch{0%{transform:rotate(-3deg)}20%{transform:rotate(-3deg) translate(-.05em,.02em);clip-path:inset(12% 0 38% 0)}40%{transform:rotate(-3deg) translate(.05em,-.02em);clip-path:inset(48% 0 6% 0)}60%{transform:rotate(-3deg);clip-path:none;filter:hue-rotate(60deg) saturate(1.6)}100%{transform:rotate(-3deg);filter:none}}
-.story-buy{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:20px}.story-buy .price-line{flex-basis:100%;margin:0}
+.story-buy{display:flex;flex-direction:column;align-items:stretch;width:100%;max-width:260px;margin-top:20px;padding:20px 20px 22px;background:#fff;border-radius:16px}.story-buy .button{justify-content:center}.story-buy .price{font-size:3rem}.story-buy .price-line{font-family:Goudy,Georgia,serif;font-size:1.5rem;line-height:1.25;color:#2c2c2c;margin:6px 0 18px}
 @media(max-width:700px){.story{padding-bottom:32px;margin-top:0}.story-text{font-size:clamp(1.3rem,7.3vw,2.1rem);line-height:1.5;max-width:none}}
 @media(min-width:360px) and (max-width:700px){.sword-line{white-space:nowrap}}
 .licenses details p,.licenses pre{padding-left:20px}.licenses pre{white-space:pre;overflow-x:auto;font-size:.8rem;line-height:1.5;margin:16px 0 0;max-width:75ch;color:#4a4550}
