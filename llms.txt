@@ -1,0 +1,20 @@
+# Glimmerglass
+
+> Glimmerglass is a Framer plugin that puts a transparent animation (no frame, no background) on a website. It converts the artist's own animation into transparent video in both formats browsers need (HEVC for Safari and iPhone, VP9 for Chrome, Edge and Firefox) at several sizes, packs them into one .glim file and places a single component on the Framer page. Made by The House of Koco.
+
+- Takes: MOV (ProRes 4444), MP4 or WebM with transparency; animated PNG, animated WebP or GIF; a folder of PNG or WebP frames; a .glim. Limits: 256 MiB of source files, 600 frames, 16 megapixels per frame, 120 seconds.
+- Price: the plugin is free to install from the Framer Marketplace; converting needs a license key, US$8, one payment, a lifetime license for one person, bought inside the plugin (delivered by Gumroad).
+- Conversion runs on the Glimmerglass server in Germany; uploads are deleted when the conversion finishes or fails.
+- An iPhone, iPad and Mac app is coming soon; it is not available yet.
+
+## Pages
+
+- [Framer plugin](https://glimmerglass.app/framer.html): how to use it, accepted files, component settings, license help
+- [Questions and answers](https://glimmerglass.app/guide.html): black boxes in Safari, GIF and WebP size, using it outside Framer, cost, file handling
+- [What is a .glim?](https://glimmerglass.app/glim.html): the single-file format, what is inside it, how the player picks a file
+- [Privacy](https://glimmerglass.app/privacy.html): what happens to uploaded files and license data
+
+## Get it
+
+- [Glimmerglass on the Framer Marketplace](https://www.framer.com/marketplace/plugins/glimmerglass/)
+- Support: mike@houseofkoco.com
