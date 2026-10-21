@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><script src="motion.js?v=e25b1c8aad"></script>
+  <meta charset="utf-8"><meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1"><script src="motion.js?v=e25b1c8aad"></script>
   <title>Glimmerglass - Transparent animation, ready for the web</title>
   <meta name="description" content="Turn your transparent artwork into a ready-to-place animation component. Glimmerglass for Framer, with iPhone, iPad and Mac to come.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -19,10 +19,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="The Glimmerglass logo, Transparent Video, with a cat asleep on top of the checkered mark">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="styles.css?v=850a0e9c22">
+  <link rel="stylesheet" href="styles.css?v=a7b60991f3">
   <!-- The product's own player: the two knights that ride out of the film are Glimmerglass conversions, played by it. -->
   <script src="glimmerglass.min.js?v=c1d38a45a1" defer></script>
-  <script src="hero.js?v=90fed9796f" defer></script>
+  <script src="hero.js?v=efc277e7fe" defer></script>
 </head>
 <body class="home framed">
   <!-- Shared paint for the benefit pictures: soft, glossy objects lit from the top left, each standing on a faint shadow. -->
@@ -55,7 +55,7 @@
   <div class="shell">
   <header>
     <a href="index.html" aria-label="Glimmerglass home"><img src="assets/logo.svg" alt="Glimmerglass" width="184"></a>
-    <nav aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="framer.html">Framer plugin</a><a href="glim.html">.glim file</a><span class="nav-soon" role="link" aria-disabled="true" tabindex="0" data-soon="Coming soon" title="Coming soon">Apple app</span></nav>
+    <nav aria-label="Main"><span class="nav-soon" role="link" aria-disabled="true" tabindex="0" data-soon="Coming soon" title="Coming soon">Apple app</span><a href="framer.html">Framer plugin</a><a href="glim.html">.glim file</a></nav>
   </header>
   <main id="main">
     <div class="hero-intro">
@@ -78,10 +78,10 @@
     <figure class="hero-film" aria-labelledby="film-caption">
       <div class="hero-stage">
         <div class="film-frame">
-          <video id="hero-video" muted loop playsinline controls preload="metadata" poster="assets/glimmerglass-workflow-poster.jpg" aria-label="A silent film: exported transparent animations go through Glimmerglass and Framer into a finished scene, whose knights ride out of the video and across the page." aria-describedby="film-caption">
-            <source src="assets/glimmerglass-workflow.mp4" type="video/mp4">
-            <source src="assets/glimmerglass-workflow.webm" type="video/webm">
-            <p>Your browser cannot play this video. <a href="assets/glimmerglass-workflow.mp4">Download the film</a>.</p>
+          <video id="hero-video" muted loop playsinline controls preload="metadata" poster="assets/glimmerglass-workflow-poster.jpg?v=19c816bfc7" aria-label="A silent film: exported transparent animations go through Glimmerglass and Framer into a finished scene, whose knights ride out of the video and across the page." aria-describedby="film-caption">
+            <source src="assets/glimmerglass-workflow.mp4?v=d490ea037a" type="video/mp4">
+            <source src="assets/glimmerglass-workflow.webm?v=5022f53b3f" type="video/webm">
+            <p>Your browser cannot play this video. <a href="assets/glimmerglass-workflow.mp4?v=d490ea037a">Download the film</a>.</p>
           </video>
           <button class="film-toggle" type="button" aria-controls="hero-video" hidden>Play video</button>
         </div>
@@ -134,9 +134,9 @@
       <section class="glass"><svg class="benefit-icon" viewBox="0 0 80 80" width="72" height="72" aria-hidden="true" focusable="false"><ellipse cx="40" cy="74" rx="24" ry="3.5" fill="#4b3d8f" opacity=".16" filter="url(#icon-shadow)"/><path d="M29 44 22 70l8-4.5 5 6.5 5-22Z" fill="url(#g-ribbon)"/><path d="M51 44l7 26-8-4.5-5 6.5-5-22Z" fill="url(#g-ribbon-dark)"/><path d="M40.0 11.5Q45.1 5.5 47.5 13.0Q54.4 9.4 53.8 17.2Q61.6 16.6 58.0 23.5Q65.5 25.9 59.5 31.0Q65.5 36.1 58.0 38.5Q61.6 45.4 53.8 44.8Q54.4 52.6 47.5 49.0Q45.1 56.5 40.0 50.5Q34.9 56.5 32.5 49.0Q25.6 52.6 26.2 44.8Q18.4 45.4 22.0 38.5Q14.5 36.1 20.5 31.0Q14.5 25.9 22.0 23.5Q18.4 16.6 26.2 17.2Q25.6 9.4 32.5 13.0Q34.9 5.5 40.0 11.5Z" fill="#f0b483" transform="translate(1.5 2.5)"/><path d="M40.0 11.5Q45.1 5.5 47.5 13.0Q54.4 9.4 53.8 17.2Q61.6 16.6 58.0 23.5Q65.5 25.9 59.5 31.0Q65.5 36.1 58.0 38.5Q61.6 45.4 53.8 44.8Q54.4 52.6 47.5 49.0Q45.1 56.5 40.0 50.5Q34.9 56.5 32.5 49.0Q25.6 52.6 26.2 44.8Q18.4 45.4 22.0 38.5Q14.5 36.1 20.5 31.0Q14.5 25.9 22.0 23.5Q18.4 16.6 26.2 17.2Q25.6 9.4 32.5 13.0Q34.9 5.5 40.0 11.5Z" fill="url(#g-gold)"/><circle cx="40" cy="31" r="13.5" fill="url(#g-disc)"/><circle cx="40" cy="31" r="13.5" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.2"/><path d="M33.5 31.5l4.5 4.5 8.5-9.5" fill="none" stroke="url(#g-ribbon-dark)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="31" cy="17" rx="6" ry="3" fill="#fff" opacity=".7" filter="url(#icon-soft)" transform="rotate(-30 31 17)"/></svg><h2>Proof it’s the original.</h2><p>Content Credentials receipts are planned. They will let people check whether a file has changed since it was signed.</p></section>
       <section class="glass"><svg class="benefit-icon" viewBox="0 0 80 80" width="72" height="72" aria-hidden="true" focusable="false"><ellipse cx="40" cy="74" rx="24" ry="3.5" fill="#4b3d8f" opacity=".16" filter="url(#icon-shadow)"/><path d="M33 18Q37.8 37.2 57 42Q37.8 46.8 33 66Q28.2 46.8 9 42Q28.2 37.2 33 18Z" fill="#e7a0c8" transform="translate(1.5 2.5)"/><path d="M33 18Q37.8 37.2 57 42Q37.8 46.8 33 66Q28.2 46.8 9 42Q28.2 37.2 33 18Z" fill="url(#g-spark-a)"/><ellipse cx="31" cy="31" rx="2.2" ry="7" fill="#fff" opacity=".75" filter="url(#icon-soft)"/><path d="M60 7Q62.4 16.6 72 19Q62.4 21.4 60 31Q57.6 21.4 48 19Q57.6 16.6 60 7Z" fill="#9aa6ee" transform="translate(1 2)"/><path d="M60 7Q62.4 16.6 72 19Q62.4 21.4 60 31Q57.6 21.4 48 19Q57.6 16.6 60 7Z" fill="url(#g-spark-b)"/><ellipse cx="59" cy="14" rx="1.3" ry="3.6" fill="#fff" opacity=".75" filter="url(#icon-soft)"/><path d="M63 49Q64.4 54.6 70 56Q64.4 57.4 63 63Q61.6 57.4 56 56Q61.6 54.6 63 49Z" fill="url(#g-spark-c)"/></svg><h2>Built for AI output</h2><p>Your AI tools keep handing you animated .webp files. Glimmerglass turns them into proper transparent video, light enough for the real web.</p></section>
       <section class="glass"><svg class="benefit-icon" viewBox="0 0 80 80" width="72" height="72" aria-hidden="true" focusable="false"><ellipse cx="40" cy="74" rx="24" ry="3.5" fill="#4b3d8f" opacity=".16" filter="url(#icon-shadow)"/><g transform="rotate(-32 41 40)"><g fill="url(#g-key-side)" transform="translate(1.5 2.5)"><path fill-rule="evenodd" d="M24 26a14 14 0 1 1 0 28a14 14 0 1 1 0-28Zm-1 8.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 1 0 0-11Z"/><rect x="35" y="36.5" width="34" height="7" rx="3.5"/><rect x="52" y="40" width="5" height="11" rx="2"/><rect x="61" y="40" width="5" height="8" rx="2"/></g><g fill="url(#g-key)"><path fill-rule="evenodd" d="M24 26a14 14 0 1 1 0 28a14 14 0 1 1 0-28Zm-1 8.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 1 0 0-11Z"/><rect x="35" y="36.5" width="34" height="7" rx="3.5"/><rect x="52" y="40" width="5" height="11" rx="2"/><rect x="61" y="40" width="5" height="8" rx="2"/></g><rect x="38" y="37.5" width="26" height="2" rx="1" fill="#fff" opacity=".7" filter="url(#icon-soft)"/><ellipse cx="18" cy="32" rx="5" ry="2.5" fill="#fff" opacity=".75" filter="url(#icon-soft)" transform="rotate(-40 18 32)"/></g><path d="M66 7Q67.4 12.6 73 14Q67.4 15.4 66 21Q64.6 15.4 59 14Q64.6 12.6 66 7Z" fill="url(#g-spark-a)"/></svg><h2>Lifetime license, one payment</h2>
-<p>Your license is for you, on your own browsers and computers. There's a soft limit of 5 browsers to catch shared keys - normal use never touches it. Buy your key on <a href="https://houseofkoco.gumroad.com/l/glimmerglass">Gumroad</a>. It arrives by email.</p></section>
+<p>Your license is for you, on your own browsers and computers. There's a soft limit of 5 browsers to catch shared keys - normal use never touches it. Get the plugin on <a href="https://www.framer.com/marketplace/plugins/glimmerglass/">Framer</a>, then buy your key from inside it. It arrives by email.</p></section>
     </div>
-    <section class="glass closing" aria-labelledby="closing-title"><div class="closing-copy"><h2 id="closing-title">Ready to try it?</h2><p>Buy your key on Gumroad, drop it into the Framer plugin, and your first transparent scene goes live. One payment, yours for good.</p><a class="button" href="https://houseofkoco.gumroad.com/l/glimmerglass">Get Glimmerglass</a></div><div class="closing-art" data-glimmerglass="assets/closing/pilot.glim?v=f0c591662f" data-alt="A laughing pilot in a leather flying helmet and goggles, his long red beard streaming in the wind"><img src="assets/closing/pilot-poster.webp" width="640" height="520" alt="A laughing pilot in a leather flying helmet and goggles, his long red beard streaming in the wind" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"></div></section>
+    <section class="glass closing" aria-labelledby="closing-title"><div><h2 id="closing-title">Ready to try it?</h2><p>Open Glimmerglass in Framer, add your license key, and your first transparent scene goes live. One payment, yours for good.</p></div><a class="button" href="https://www.framer.com/marketplace/plugins/glimmerglass/">Get it on Framer</a></section>
     <section class="glass" id="support"><h2>Need a hand?</h2><p>Tell us your device, input format and the error you see. Keep license keys and private artwork out of your first message.</p><a class="contact" href="mailto:mike@houseofkoco.com?subject=Glimmerglass%20support">mike@houseofkoco.com</a></section>
   </main>
   <footer><span class="footer-brand"><img src="assets/logo.svg" alt="Glimmerglass" width="120"><span>Created by <a href="https://houseofkoco.com">The House of Koco</a></span></span><a href="privacy.html">Privacy</a><a href="#support">Get support</a><a href="framer.html#license">License help</a></footer>

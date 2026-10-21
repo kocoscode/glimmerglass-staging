@@ -62,7 +62,7 @@ if (video && toggle) {
         player: Glimmerglass.mount(element, { manifest: element.dataset.glim, autoplay: false, control: 'never', preload: 'auto', priority: true, offscreen: 'play' }),
       }));
       let scene = { sceneStarts: Infinity, filmDuration: 42, dissolveIn: 0.4, dissolveOut: 0.36 };
-      fetch('hero.json').then((r) => r.json()).then((timing) => { scene = timing; }).catch(() => {});
+      fetch('hero.json?v=5d2a62c08e').then((r) => r.json()).then((timing) => { scene = timing; }).catch(() => {});
       // How long ago the film's last scene began, counted round the film's loop.
       const sinceScene = () => ((video.currentTime - scene.sceneStarts) % scene.filmDuration + scene.filmDuration) % scene.filmDuration;
       let riding = false;
