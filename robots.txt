@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://glimmerglass.app/sitemap.xml
+Disallow: /
