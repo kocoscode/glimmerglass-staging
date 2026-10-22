@@ -92,11 +92,13 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .apple-story .o-box{--w:1.38em;--vw:1.32em;--vh:1.66em;--b:-.64em}.apple-story .clip-still{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}.apple-story .o-box video{position:relative}.apple-story .still-only video,.apple-story .still-only img.gif{visibility:hidden}.o-gif{--w:1.5em;--x:.04em;--b:-.5em;--vw:1.4em;--vh:1.4em}.o-gif .vis{transform:rotate(3deg)}.o-gif img{display:block;width:100%;height:100%;image-rendering:pixelated}
 .device-slot{--vw:calc(var(--vh) * var(--ar));--w:calc(var(--vw) + .35em);--x:.28em}
 .device-slot .vis{transform:none;filter:none}
-.device-screen{position:absolute;left:var(--sx);top:var(--sy);width:var(--sw);height:var(--sh);border-radius:var(--sr);overflow:hidden;background:#000}
-.device-screen>img,.device-screen>video,.device-screen>span{display:block;width:100%;height:100%;object-fit:cover}
+.device-screen{position:absolute;left:var(--sx);top:var(--sy);width:var(--sw);height:var(--sh);border-radius:var(--sr);overflow:hidden;background:var(--screen,#000)}
+.device-screen>img,.device-screen>video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}.device-screen>.screen-player{position:absolute;left:4%;bottom:-4.7%;width:92%;aspect-ratio:1}.device-screen>.screen-player img{display:block;width:100%;height:100%}
 .device-bezel{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}
-.o-iphone{--ar:.488;--vh:2.2em;--b:-.8em;--sx:5.6%;--sy:2.6%;--sw:88.8%;--sh:94.8%;--sr:12%/5.6%}
-.o-ipad{--ar:.765;--vh:2.2em;--b:-.8em;--sx:4.2%;--sy:3.2%;--sw:91.6%;--sh:93.6%;--sr:2.4%/1.8%}
+/* iPhone 18 Pro Max bezel (1470 x 3000): screen hole 1320 x 2868 at 75, 66, measured from its alpha; the rect bleeds .1 to .2% under the frame so no hairline shows at the scaled edge. */
+.o-iphone{--ar:.49;--vh:1.8em;--b:-.6em;--sx:4.902%;--sy:2.1%;--sw:90.196%;--sh:95.8%;--sr:13.64%/6.28%}
+/* iPad Pro 13" M5 bezel (2300 x 3000): screen hole 2064 x 2752 at 118, 124, measured the same way. */
+.o-ipad{--ar:.76667;--vh:1.8em;--b:-.6em;--sx:4.93%;--sy:3.983%;--sw:90.139%;--sh:92.033%;--sr:2.42%/1.82%}.o-ipad-play{--screen:#f6f4fb}
 .device-slot.pending{display:none}
 .story-buy .button[aria-disabled="true"]{cursor:default;opacity:.75}.story-buy .button[aria-disabled="true"]:hover{background:#444}.cta-note{margin:10px 0 0;font-size:.85rem;color:#625968;text-align:center}
 .apple-guide{margin-top:24px}.apple-guide>h2:first-of-type{margin-top:0}

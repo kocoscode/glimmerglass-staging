@@ -33,6 +33,7 @@
       else if (gif.complete && !gif.naturalWidth) fail();
     }
     if (glim) {
+      if (reduce && stills) return;  // held still: its poster <img> stays, nothing is mounted
       if (!window.Glimmerglass) { fail(); return; }
       var player = Glimmerglass.mount(glim, { manifest: glim.getAttribute("data-glim"), control: "never", reducedMotion: "ignore" });
       player.on("fallback", fail);
