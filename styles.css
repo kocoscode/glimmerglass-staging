@@ -82,6 +82,24 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .story-buy{display:flex;flex-direction:column;align-items:stretch;width:100%;max-width:260px;margin-top:20px;padding:20px 20px 22px;background:#fff;border-radius:16px}.story-buy .button{justify-content:center}.story-buy .price{font-size:3rem}.story-buy .price-line{font-family:Goudy,Georgia,serif;font-size:1.5rem;line-height:1.25;color:#2c2c2c;margin:6px 0 18px}
 @media(max-width:700px){.story{padding-bottom:32px;margin-top:0}.story-text{font-size:clamp(1.3rem,7.3vw,2.1rem);line-height:1.5;max-width:none}}
 @media(min-width:360px) and (max-width:700px){.sword-line{white-space:nowrap}}
+/* ---- the Apple app page's story (same hero, story.js): a second paragraph (.para) starts on its own line; the crunchy GIF sits like the black box.
+   Device slots follow Apple's marketing rules for product images: the bezel PNG (.device-bezel) is drawn as is, on top, with no filter, shadow, tilt, crop
+   or motion of its own, so a sentence holding one fades in without the blur; the screen picture (.device-screen) sits under it, inside the screen rect only.
+   To fit a bezel: set --ar to the PNG's width / height and --sx, --sy, --sw, --sh to its screen opening (percent of the PNG), --sr to the screen's corners.
+   Until the frames arrive the slots show their words in a dashed pill (.pending), and nothing unframed appears. ---- */
+.story .para{display:block;margin-top:.9em}
+.story .s.device-line{transition:opacity .9s ease}.story.playing:not(.done) .s.device-line:not(.in){filter:none}
+.apple-story .o-box{--w:1.38em;--vw:1.32em;--vh:1.66em;--b:-.64em}.apple-story .obj.inline-clip.as-words{display:inline}.apple-story .obj.inline-clip.as-words .clip-words::before{content:" ("}.apple-story .obj.inline-clip.as-words .clip-words::after{content:")"}.o-gif{--w:1.5em;--x:.04em;--b:-.5em;--vw:1.4em;--vh:1.4em}.o-gif .vis{transform:rotate(3deg)}.o-gif img{display:block;width:100%;height:100%;image-rendering:pixelated}
+.device-slot{--vw:calc(var(--vh) * var(--ar));--w:calc(var(--vw) + .1em);--x:.05em}
+.device-slot .vis{transform:none;filter:none}
+.device-screen{position:absolute;left:var(--sx);top:var(--sy);width:var(--sw);height:var(--sh);border-radius:var(--sr);overflow:hidden;background:#000}
+.device-screen>img,.device-screen>video,.device-screen>span{display:block;width:100%;height:100%;object-fit:cover}
+.device-bezel{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}
+.o-iphone{--ar:.488;--vh:2.2em;--b:-.8em;--sx:5.6%;--sy:2.6%;--sw:88.8%;--sh:94.8%;--sr:12%/5.6%}
+.o-ipad{--ar:.765;--vh:2.2em;--b:-.8em;--sx:4.2%;--sy:3.2%;--sw:91.6%;--sh:93.6%;--sr:2.4%/1.8%}
+.device-slot.pending .clip-words{display:inline-block;font:700 max(.34em,11px)/1.3 Satoshi,system-ui,sans-serif;color:#868795;border:1.5px dashed #86879599;border-radius:999px;padding:.25em .8em;vertical-align:.5em;white-space:nowrap}
+.story-buy .button[aria-disabled="true"]{cursor:default;opacity:.75}.story-buy .button[aria-disabled="true"]:hover{background:#444}.cta-note{margin:10px 0 0;font-size:.85rem;color:#625968;text-align:center}
+.apple-guide{margin-top:24px}.apple-guide>h2:first-of-type{margin-top:0}
 .licenses details p,.licenses pre{padding-left:20px}.licenses pre{white-space:pre;overflow-x:auto;font-size:.8rem;line-height:1.5;margin:16px 0 0;max-width:75ch;color:#4a4550}
 
 /* Motion off (the footer switch) holds the same things still as the system setting does. */

@@ -1,32 +1,44 @@
-// The Framer page hero: one statement revealed sentence by sentence. Each .s carries data-at, its second in the
-// play-through. The boxed squirrel glitches in and stays, the
-// clean squirrel plays through Glimmerglass, and the sword is pulled once when its line arrives, then held raised.
+// The story heroes (the Framer page, the Apple app page): one statement revealed sentence by sentence. Each .s
+// carries data-at, its second in the play-through; #story's data-end is when everything is shown.
+// Clips are .inline-clip: a <video> (plays from its data-at, glitching in with data-glitch), a GIF <img>, or a
+// [data-glim] player that loops through Glimmerglass. A [data-glim][data-play-at] outside a clip (the sword) plays
+// once at that second and holds its last frame.
 // Any scroll, key or tap shows everything at once. With reduced motion, or for a clip that cannot play, the
-// squirrels are shown as their words and the sword as its still picture.
+// clips are shown as their words; a play-once player shows its still picture.
 (function () {
   var story = document.getElementById("story");
   if (!story) return;
   var reduce = window.glimmerglassStill ? window.glimmerglassStill() : !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);  // motion.js answers for the whole site
-  var clipA = story.querySelector(".clip-a"), videoA = story.querySelector(".clip-a-video");
-  var clipB = story.querySelector(".clip-b"), playerB = story.querySelector(".clip-b-player");
-  var swordSlot = story.querySelector(".sword-player");
   var steps = Array.prototype.slice.call(story.querySelectorAll(".s"));
+  var clips = Array.prototype.slice.call(story.querySelectorAll(".inline-clip"));
   var asWords = function (clip) { clip.classList.add("as-words"); };
-  var source = videoA.querySelector("source");
-  videoA.addEventListener("error", function () { asWords(clipA); });
-  if (source) source.addEventListener("error", function () { asWords(clipA); });
-  var sword = null;
-  if (window.Glimmerglass) {
-    var player = Glimmerglass.mount(playerB, { manifest: playerB.getAttribute("data-glim"), control: "never", reducedMotion: "ignore" });
-    player.on("fallback", function () { asWords(clipB); });
-    player.on("error", function () { asWords(clipB); });
-    // Plays once, when its line arrives, and holds on the raised sword.
-    sword = Glimmerglass.mount(swordSlot, { manifest: swordSlot.getAttribute("data-glim"), control: "never", autoplay: false, loop: false, reducedMotion: "ignore" });
-  } else asWords(clipB);
+  var timed = [], once = [];
+  clips.forEach(function (clip) {
+    var video = clip.querySelector("video"), gif = clip.querySelector("img.gif"), glim = clip.querySelector("[data-glim]");
+    var fail = function () { asWords(clip); };
+    if (video) {
+      video.addEventListener("error", fail);
+      var source = video.querySelector("source");
+      if (source) source.addEventListener("error", fail);
+      timed.push({ clip: clip, video: video, at: Number(clip.getAttribute("data-at") || 0) });
+    }
+    if (gif) { gif.addEventListener("error", fail); if (gif.complete && !gif.naturalWidth) fail(); }
+    if (glim) {
+      if (!window.Glimmerglass) { fail(); return; }
+      var player = Glimmerglass.mount(glim, { manifest: glim.getAttribute("data-glim"), control: "never", reducedMotion: "ignore" });
+      player.on("fallback", fail);
+      player.on("error", fail);
+    }
+  });
+  if (window.Glimmerglass) Array.prototype.forEach.call(story.querySelectorAll("[data-glim][data-play-at]"), function (slot) {
+    if (slot.closest(".inline-clip")) return;
+    // Plays once, when its line arrives, and holds on its last frame.
+    once.push({ player: Glimmerglass.mount(slot, { manifest: slot.getAttribute("data-glim"), control: "never", autoplay: false, loop: false, reducedMotion: "ignore" }), at: Number(slot.getAttribute("data-play-at")) });
+  });
 
-  if (reduce) { story.classList.add("static"); asWords(clipA); asWords(clipB); return; }
+  if (reduce) { story.classList.add("static"); clips.forEach(asWords); return; }
   var play = function (video) { var p = video.play(); if (p && p.catch) p.catch(function () {}); };
-  var pull = function () { if (sword) sword.play(); };
+  var show = function (t) { t.clip.classList.add("shown"); if (t.clip.hasAttribute("data-glitch")) t.clip.classList.add("glitch"); play(t.video); };
   var timers = [], done = false;
   var at = function (seconds, fn) { timers.push(setTimeout(fn, seconds * 1000)); };
   // A line arriving below the fold is brought up into view: the statement runs taller than the screen.
@@ -36,14 +48,16 @@
     timers.forEach(clearTimeout);
     story.classList.add("done");
     steps.forEach(function (s) { s.classList.add("in"); });
-    clipA.classList.add("shown"); play(videoA); pull();
+    timed.forEach(function (t) { t.clip.classList.add("shown"); play(t.video); });
+    once.forEach(function (o) { o.player.play(); });
     ["wheel", "touchstart", "keydown", "pointerdown"].forEach(function (type) { window.removeEventListener(type, finish, true); });
   };
   story.classList.add("playing");
   if (story.getBoundingClientRect().bottom < 0 || location.hash) { finish(); return; }
   steps.forEach(function (s) { at(Number(s.getAttribute("data-at")), function () { s.classList.add("in"); follow(s); }); });
-  at(3.9, function () { clipA.classList.add("shown", "glitch"); play(videoA); });
-  at(10.4, pull);
-  at(12.2, finish);
+  timed.forEach(function (t) { at(t.at, function () { show(t); }); });
+  once.forEach(function (o) { at(o.at, function () { o.player.play(); }); });
+  var last = steps.reduce(function (m, s) { return Math.max(m, Number(s.getAttribute("data-at"))); }, 0);
+  at(Number(story.getAttribute("data-end")) || last + 0.8, finish);
   ["wheel", "touchstart", "keydown", "pointerdown"].forEach(function (type) { window.addEventListener(type, finish, { capture: true, passive: true }); });
 })();
