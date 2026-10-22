@@ -50,7 +50,7 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .cards>*{min-width:0}
 /* Framer page cards, third pass: icon inline with the heading, top-aligned columns, no padding-out of empty space */
 .cards.three .card-link{margin:4px 0 0}.cards ul.tight li{margin-bottom:4px}.wide-cols>div>:first-child{margin-top:0;padding-top:0}.wide-cols details:first-child summary{margin-top:0}.contact-block h3{margin-top:0}.wide-cols p:last-child{margin-bottom:0}
-@media(min-width:701px) and (max-width:960px){#controls{grid-column:1/-1}#controls ul.tight{columns:2;column-gap:40px}#controls ul.tight li{break-inside:avoid}}@media(max-width:700px){.wide-cols{gap:24px}}
+@media(min-width:701px) and (max-width:960px){#controls{grid-column:1/-1}#controls ul.tight,#editor ul.tight{columns:2;column-gap:40px}#controls ul.tight li,#editor ul.tight li{break-inside:avoid}}@media(max-width:700px){.wide-cols{gap:24px}}
 /* ---- the Framer page hero (story.js), laid out from the owner's Figma frame: one statement in the heading face at a size tied to its column (5.77% of it, about 70 px on a desktop), so it wraps as drawn.
    Each picture is an .obj: a fixed advance on the line with the picture (.vis) drawn around it, so pictures overlap the gaps between lines and never push the copy. Sizes and offsets are in em, measured from the frame. ---- */
 .story{position:relative;container-type:inline-size;padding:0 0 56px;margin-top:-20px}
@@ -76,7 +76,7 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .sword-tile{border-radius:.3em;overflow:hidden;box-shadow:inset 0 0 0 .025em #fff;transform:rotate(2deg)}
 .sword-player{position:absolute;right:0;bottom:0;display:block;width:92.2%;height:94%}
 .clip-words{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.obj.as-words{width:auto;height:auto;vertical-align:baseline}.obj.as-words .clip-words{position:static;width:auto;height:auto;clip:auto;white-space:normal}.obj.as-words .vis,.obj.as-words .ugh{display:none}
+.obj.as-words{width:auto;height:auto;vertical-align:baseline}.obj.inline-clip.as-words{display:inline}.obj.inline-clip.as-words .clip-words::before{content:" "}.obj.as-words .clip-words{position:static;width:auto;height:auto;clip:auto;white-space:normal}.obj.as-words .vis,.obj.as-words .ugh{display:none}
 .clip-a.glitch .vis{animation:story-glitch .5s steps(2,end) 1}
 @keyframes story-glitch{0%{transform:rotate(-3deg)}20%{transform:rotate(-3deg) translate(-.05em,.02em);clip-path:inset(12% 0 38% 0)}40%{transform:rotate(-3deg) translate(.05em,-.02em);clip-path:inset(48% 0 6% 0)}60%{transform:rotate(-3deg);clip-path:none;filter:hue-rotate(60deg) saturate(1.6)}100%{transform:rotate(-3deg);filter:none}}
 .story-buy{display:flex;flex-direction:column;align-items:stretch;width:100%;max-width:260px;margin-top:20px;padding:20px 20px 22px;background:#fff;border-radius:16px}.story-buy .button{justify-content:center}.story-buy .price{font-size:3rem}.story-buy .price-line{font-family:Goudy,Georgia,serif;font-size:1.5rem;line-height:1.25;color:#2c2c2c;margin:6px 0 18px}
@@ -89,19 +89,22 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
    The slot's advance carries its own space before the picture. Until the frames arrive a slot is .pending: not shown at all (no words, no space), so nothing unframed appears. ---- */
 .story .para{display:block;margin-top:.9em}
 .story .s.device-line{transition:opacity .9s ease}.story.playing:not(.done) .s.device-line:not(.in){filter:none}
-.apple-story .o-box{--w:1.38em;--vw:1.32em;--vh:1.66em;--b:-.64em}.apple-story .clip-still{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}.apple-story .o-box video{position:relative}.apple-story .still-only video,.apple-story .still-only img.gif{visibility:hidden}.o-gif{--w:1.5em;--x:.04em;--b:-.5em;--vw:1.4em;--vh:1.4em}.o-gif .vis{transform:rotate(3deg)}.o-gif img{display:block;width:100%;height:100%;image-rendering:pixelated}
+.apple-story .o-box{--w:1.56em;--x:.12em;--vw:1.32em;--vh:1.66em;--b:-.64em}.apple-story .o-box .vis{transform:rotate(-6deg)}.apple-story .clip-a.glitch .vis{animation-name:story-glitch-apple}@keyframes story-glitch-apple{0%{transform:rotate(-6deg)}20%{transform:rotate(-6deg) translate(-.05em,.02em);clip-path:inset(12% 0 38% 0)}40%{transform:rotate(-6deg) translate(.05em,-.02em);clip-path:inset(48% 0 6% 0)}60%{transform:rotate(-6deg);clip-path:none;filter:hue-rotate(60deg) saturate(1.6)}100%{transform:rotate(-6deg);filter:none}}.apple-story .clip-still{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}.apple-story .o-box video{position:relative}.apple-story .still-only video,.apple-story .still-only img.gif{visibility:hidden}.o-gif{--w:1.5em;--x:.04em;--b:-.5em;--vw:1.4em;--vh:1.4em}.o-gif .vis{transform:rotate(4deg)}.o-gif img{display:block;width:100%;height:100%;image-rendering:pixelated}
 .device-slot{--vw:calc(var(--vh) * var(--ar));--w:calc(var(--vw) + .35em);--x:.28em}
-.device-slot .vis{transform:none;filter:none}
+/* devices stay upright: Apple marketing guidelines forbid tilting product images (owner asked; flagged 23 Oct) */
+.device-slot,.film-device{--device-tilt:0deg}.device-slot .vis,.film-device{transform:rotate(var(--device-tilt));filter:none}
+/* The devices are real inline boxes, about two lines tall: the line holding one grows to fit it, so it never covers a word and the other lines keep their spacing. iPhone and iPad stay on one line together (.devices). */
+.apple-story .device-slot{--vh:3em;--b:0;height:var(--vh);vertical-align:-.42em;margin-top:.2em}.apple-story .devices{white-space:nowrap}
+@media(max-width:700px){.apple-story .device-slot{--vh:2.7em}}
+.app-film{display:flex;justify-content:center;margin:8px 0 48px}.film-device{position:relative;display:block;width:min(400px,72vw);aspect-ratio:var(--ar)}
 .device-screen{position:absolute;left:var(--sx);top:var(--sy);width:var(--sw);height:var(--sh);border-radius:var(--sr);overflow:hidden;background:var(--screen,#000)}
 .device-screen>img,.device-screen>video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}.device-screen>.screen-player{position:absolute;left:4%;bottom:-4.7%;width:92%;aspect-ratio:1}.device-screen>.screen-player img{display:block;width:100%;height:100%}
 .device-bezel{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}
 /* iPhone 18 Pro Max bezel (1470 x 3000): screen hole 1320 x 2868 at 75, 66, measured from its alpha; the rect bleeds .1 to .2% under the frame so no hairline shows at the scaled edge. */
-.o-iphone{--ar:.49;--vh:1.8em;--b:-.6em;--sx:4.902%;--sy:2.1%;--sw:90.196%;--sh:95.8%;--sr:13.64%/6.28%}
+.o-iphone{--ar:.49;--sx:4.902%;--sy:2.1%;--sw:90.196%;--sh:95.8%;--sr:13.64%/6.28%}
 /* iPad Pro 13" M5 bezel (2300 x 3000): screen hole 2064 x 2752 at 118, 124, measured the same way. */
-.o-ipad{--ar:.76667;--vh:1.8em;--b:-.6em;--sx:4.93%;--sy:3.983%;--sw:90.139%;--sh:92.033%;--sr:2.42%/1.82%}.o-ipad-play{--screen:#f6f4fb}
-.device-slot.pending{display:none}
+.o-ipad{--ar:.76667;--sx:4.93%;--sy:3.983%;--sw:90.139%;--sh:92.033%;--sr:2.42%/1.82%}.o-ipad-play{--screen:#f6f4fb}
 .story-buy .button[aria-disabled="true"]{cursor:default;opacity:.75}.story-buy .button[aria-disabled="true"]:hover{background:#444}.cta-note{margin:10px 0 0;font-size:.85rem;color:#625968;text-align:center}
-.apple-guide{margin-top:24px}.apple-guide>h2:first-of-type{margin-top:0}
 .licenses details p,.licenses pre{padding-left:20px}.licenses pre{white-space:pre;overflow-x:auto;font-size:.8rem;line-height:1.5;margin:16px 0 0;max-width:75ch;color:#4a4550}
 
 /* Motion off (the footer switch) holds the same things still as the system setting does. */
