@@ -3,26 +3,35 @@
 // Clips are .inline-clip: a <video> (plays from its data-at, glitching in with data-glitch), a GIF <img>, or a
 // [data-glim] player that loops through Glimmerglass. A [data-glim][data-play-at] outside a clip (the sword) plays
 // once at that second and holds its last frame.
-// Any scroll, key or tap shows everything at once. With reduced motion, or for a clip that cannot play, the
-// clips are shown as their words; a play-once player shows its still picture.
+// Any scroll, key or tap shows everything at once. With reduced motion, or for a clip that cannot play, the clips
+// are shown as their words; a play-once player shows its still picture. A story marked data-reduced="stills" (the
+// Apple page) never shows words: its clips are held as still pictures instead. A video keeps its poster (with a
+// still <img> under it, which is all that shows if the video fails) and a GIF stays on its still (its src is the
+// still; data-gif is swapped in only when things move, and back out if the GIF fails).
 (function () {
   var story = document.getElementById("story");
   if (!story) return;
   var reduce = window.glimmerglassStill ? window.glimmerglassStill() : !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);  // motion.js answers for the whole site
+  var stills = story.getAttribute("data-reduced") === "stills";
   var steps = Array.prototype.slice.call(story.querySelectorAll(".s"));
   var clips = Array.prototype.slice.call(story.querySelectorAll(".inline-clip"));
   var asWords = function (clip) { clip.classList.add("as-words"); };
   var timed = [], once = [];
   clips.forEach(function (clip) {
     var video = clip.querySelector("video"), gif = clip.querySelector("img.gif"), glim = clip.querySelector("[data-glim]");
-    var fail = function () { asWords(clip); };
+    var fail = function () { if (stills) clip.classList.add("still-only"); else asWords(clip); };
     if (video) {
       video.addEventListener("error", fail);
       var source = video.querySelector("source");
       if (source) source.addEventListener("error", fail);
       timed.push({ clip: clip, video: video, at: Number(clip.getAttribute("data-at") || 0) });
     }
-    if (gif) { gif.addEventListener("error", fail); if (gif.complete && !gif.naturalWidth) fail(); }
+    if (gif) {
+      var still = gif.getAttribute("src");
+      gif.addEventListener("error", function () { if (stills && gif.getAttribute("src") !== still) gif.src = still; else fail(); });
+      if (!reduce && gif.hasAttribute("data-gif")) gif.src = gif.getAttribute("data-gif");
+      else if (gif.complete && !gif.naturalWidth) fail();
+    }
     if (glim) {
       if (!window.Glimmerglass) { fail(); return; }
       var player = Glimmerglass.mount(glim, { manifest: glim.getAttribute("data-glim"), control: "never", reducedMotion: "ignore" });
@@ -36,7 +45,7 @@
     once.push({ player: Glimmerglass.mount(slot, { manifest: slot.getAttribute("data-glim"), control: "never", autoplay: false, loop: false, reducedMotion: "ignore" }), at: Number(slot.getAttribute("data-play-at")) });
   });
 
-  if (reduce) { story.classList.add("static"); clips.forEach(asWords); return; }
+  if (reduce) { story.classList.add("static"); if (!stills) clips.forEach(asWords); return; }
   var play = function (video) { var p = video.play(); if (p && p.catch) p.catch(function () {}); };
   var show = function (t) { t.clip.classList.add("shown"); if (t.clip.hasAttribute("data-glitch")) t.clip.classList.add("glitch"); play(t.video); };
   var timers = [], done = false;
