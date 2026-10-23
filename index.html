@@ -2,7 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><script src="motion.js?v=e25b1c8aad"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><script>// One site-wide answer to "should things move?" (owner, 19 October 2026). The animations themselves show no buttons
+// of their own. The visitor's choice, saved in this browser, wins; with no choice saved, the system's Reduce Motion
+// setting decides. Every page with motion carries a "Motion on / off" switch in its footer, and a visitor whose
+// system asks for reduced motion (and who has not chosen yet) gets a short note at the bottom of the screen
+// offering the animations back. Loaded first in <head>, so the choice is in place before anything paints or mounts.
+// Other scripts ask `window.glimmerglassStill()`; the stylesheet keys off `html.still` and `html.motion-on`.
+(function () {
+  var KEY = "glimmerglass-motion", DISMISSED = "glimmerglass-motion-note";
+  var root = document.documentElement;
+  var asked = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var choice = null;
+  try { choice = localStorage.getItem(KEY); } catch (e) { /* storage blocked: see ?motion= below */ }
+  var fromAddress = /[?&]motion=(on|off)(&|$)/.exec(location.search);
+  if (fromAddress) choice = fromAddress[1];
+  var still = choice === "off" || (choice !== "on" && asked);
+  root.classList.add(still ? "still" : "motion-on");
+  window.glimmerglassStill = function () { return still; };
+
+  // Saves the choice and starts the page again with it, where the visitor is. A browser that keeps no storage
+  // gets the choice in the address instead.
+  function choose(value) {
+    try { localStorage.setItem(KEY, value); location.reload(); }
+    catch (e) { var q = new URLSearchParams(location.search); q.set("motion", value); location.search = q.toString(); }
+  }
+
+  // The page is parsed but no deferred script has run yet: the player mounts its animations from those scripts, so
+  // the choice goes onto them now. Moving: every declarative animation plays, whatever the system says. Still: none
+  // starts by itself. Either way, no per-animation button.
+  function prepare() {
+    document.querySelectorAll("[data-glimmerglass]").forEach(function (el) {
+      if (still) el.setAttribute("data-autoplay", "false"); else el.setAttribute("data-reduced-motion", "ignore");
+      if (!el.hasAttribute("data-control")) el.setAttribute("data-control", "never");
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("readystatechange", function once() {
+    if (document.readyState === "loading") return;
+    document.removeEventListener("readystatechange", once);
+    prepare();
+  }); else prepare();
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    var footer = document.querySelector("footer");
+    if (footer) {
+      var toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "motion-toggle";
+      toggle.setAttribute("aria-pressed", String(!still));
+      toggle.textContent = still ? "Motion off" : "Motion on";
+      toggle.title = still ? "Play the animations" : "Hold the animations still";
+      toggle.addEventListener("click", function () { choose(still ? "on" : "off"); });
+      footer.appendChild(toggle);
+    }
+
+    if (!asked || choice) return;
+    try { if (sessionStorage.getItem(DISMISSED)) return; } catch (e) { /* show it */ }
+    var note = document.createElement("div");
+    note.className = "motion-note";
+    note.setAttribute("role", "region");
+    note.setAttribute("aria-label", "Motion");
+    note.innerHTML = '<p><strong>Heads up: things move here.</strong> Your Reduce Motion setting has paused the animations.</p>' +
+      '<div class="motion-note-actions"><button type="button" class="button motion-play">Play the animations</button>' +
+      '<button type="button" class="motion-later">Not now</button></div>';
+    note.querySelector(".motion-play").addEventListener("click", function () { choose("on"); });
+    note.querySelector(".motion-later").addEventListener("click", function () {
+      try { sessionStorage.setItem(DISMISSED, "1"); } catch (e) { /* hide it for this page */ }
+      note.remove();
+    });
+    document.body.appendChild(note);
+  });
+})();
+</script>
   <title>Glimmerglass - Transparent animation, ready for the web</title>
   <meta name="description" content="Turn your transparent artwork into a ready-to-place animation component. Glimmerglass for Framer, with iPhone, iPad and Mac to come.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -19,10 +90,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="The Glimmerglass logo, Transparent Video, with a cat asleep on top of the checkered mark">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="styles.css?v=a30d3c36b8">
+  <link rel="preload" as="image" href="assets/glimmerglass-workflow-poster-1280.webp" fetchpriority="high"><link rel="preload" as="font" type="font/woff2" href="assets/GoudyBookletter1911.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="assets/Satoshi-Regular.woff2" crossorigin><link rel="stylesheet" href="styles.css?v=490a6f2a78">
   <!-- The product's own player: the two knights that ride out of the film are Glimmerglass conversions, played by it. -->
   <script src="glimmerglass.min.js?v=c1d38a45a1" defer></script>
-  <script src="hero.js?v=0f883fe674" defer></script>
+  <script src="hero.js?v=6d4569b465" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Glimmerglass","description":"A Framer plugin that turns a transparent animation into one lightweight component: transparent video in HEVC and VP9 at every size, packed into a single .glim file and played by its own player.","applicationCategory":"MultimediaApplication","applicationSubCategory":"Framer plugin","operatingSystem":"Web (Framer)","url":"https://glimmerglass.app/","downloadUrl":"https://www.framer.com/marketplace/plugins/glimmerglass/","installUrl":"https://www.framer.com/marketplace/plugins/glimmerglass/","publisher":{"@type":"Organization","name":"The House of Koco","url":"https://houseofkoco.com"},"offers":{"@type":"Offer","price":"8.00","priceCurrency":"USD","description":"Lifetime license key, one payment. The plugin itself is free to install.","url":"https://www.framer.com/marketplace/plugins/glimmerglass/"}}</script></head>
 <body class="home framed">
   <!-- Shared paint for the benefit pictures: soft, glossy objects lit from the top left, each standing on a faint shadow. -->
@@ -54,7 +125,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <div class="shell">
   <header>
-    <a href="index.html" aria-label="Glimmerglass home"><img src="assets/logo.svg" alt="Glimmerglass" width="184"></a>
+    <a href="index.html" aria-label="Glimmerglass home"><img src="assets/logo.svg" alt="Glimmerglass" width="184" height="43"></a>
     <nav aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="framer.html">Framer plugin</a><a href="glim.html">.glim file</a><span class="nav-soon" role="link" aria-disabled="true" tabindex="0" data-soon="Coming soon" title="Coming soon">Apple app</span></nav>
   </header>
   <main id="main">
@@ -78,7 +149,8 @@
     <figure class="hero-film" aria-labelledby="film-caption">
       <div class="hero-stage">
         <div class="film-frame">
-          <video id="hero-video" muted loop playsinline controls preload="metadata" poster="assets/glimmerglass-workflow-poster.jpg" aria-label="A silent film: exported transparent animations go through Glimmerglass and Framer into a finished scene, whose knights ride out of the video and across the page." aria-describedby="film-caption">
+          <video id="hero-video" muted loop playsinline controls preload="metadata" poster="assets/glimmerglass-workflow-poster-1280.webp" aria-label="A silent film: exported transparent animations go through Glimmerglass and Framer into a finished scene, whose knights ride out of the video and across the page." aria-describedby="film-caption">
+            <source src="assets/glimmerglass-workflow-1280.mp4" type="video/mp4" media="(max-width: 700px)">
             <source src="assets/glimmerglass-workflow.mp4" type="video/mp4">
             <source src="assets/glimmerglass-workflow.webm" type="video/webm">
             <p>Your browser cannot play this video. <a href="assets/glimmerglass-workflow.mp4">Download the film</a>.</p>
@@ -139,7 +211,7 @@
     <section class="glass closing" aria-labelledby="closing-title"><div class="closing-copy"><h2 id="closing-title">Ready to try it?</h2><p>Open Glimmerglass in Framer, add your license key, and your first transparent scene goes live. One payment, yours for good.</p><a class="button" href="https://www.framer.com/marketplace/plugins/glimmerglass/">Get it on Framer</a></div><div class="closing-art" data-glimmerglass="assets/closing/pilot.glim?v=f0c591662f" data-alt="A laughing pilot in a leather flying helmet and goggles, his long red beard streaming in the wind"><img src="assets/closing/pilot-poster.webp" width="640" height="520" alt="A laughing pilot in a leather flying helmet and goggles, his long red beard streaming in the wind" loading="lazy" decoding="async" style="display:block;width:100%;height:auto"></div></section>
     <section class="glass" id="support"><h2>Need a hand?</h2><p>Tell us your device, input format and the error you see. Keep license keys and private artwork out of your first message.</p><a class="contact" href="mailto:mike@houseofkoco.com?subject=Glimmerglass%20support">mike@houseofkoco.com</a></section>
   </main>
-  <footer><span class="footer-brand"><img src="assets/logo.svg" alt="Glimmerglass" width="120"><span>Created by <a href="https://houseofkoco.com">The House of Koco</a></span></span><a href="guide.html">Questions</a><a href="privacy.html">Privacy</a><a href="#support">Get support</a><a href="framer.html#license">License help</a></footer>
+  <footer><span class="footer-brand"><img src="assets/logo.svg" alt="Glimmerglass" width="120" height="28"><span>Created by <a href="https://houseofkoco.com">The House of Koco</a></span></span><a href="guide.html">Questions</a><a href="privacy.html">Privacy</a><a href="#support">Get support</a><a href="framer.html#license">License help</a></footer>
   </div>
 </body>
 </html>

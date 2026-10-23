@@ -35,7 +35,10 @@ if (video && toggle) {
     update();
   });
   document.addEventListener('visibilitychange', update);
-  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); }, { threshold: 0.1 }).observe(video);
+  // Start the film after the page has loaded, so its download does not compete with the first paint.
+  const observe = () => new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); }, { threshold: 0.1 }).observe(video);
+  visible = false;
+  if (document.readyState === 'complete') observe(); else addEventListener('load', observe, { once: true });
   sync();
 
   // The knights. Each is mounted through the player's documented API: the player
