@@ -122,3 +122,4 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 @media(max-width:700px){.closing{display:block;min-height:0;margin:48px 0 24px;padding:36px 24px 0}.closing-art{position:relative;right:auto;bottom:auto;width:100%;margin:24px 0 0}}
 /* The questions-and-answers guide: its one code example styled like the .glim page's. */
 .guide pre{background:#2c2c2c;color:#f4f4fa;border-radius:12px;padding:16px;overflow:auto;font-size:.8rem;line-height:1.5;margin:0 0 16px}.guide pre code{overflow-wrap:normal}.guide section.glass h2{font-size:1.65rem}
+.changelog ul{padding-left:24px}.changelog section{margin-top:24px}.changelog h2{margin-top:0}
