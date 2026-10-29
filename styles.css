@@ -123,3 +123,13 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 /* The questions-and-answers guide: its one code example styled like the .glim page's. */
 .guide pre{background:#2c2c2c;color:#f4f4fa;border-radius:12px;padding:16px;overflow:auto;font-size:.8rem;line-height:1.5;margin:0 0 16px}.guide pre code{overflow-wrap:normal}.guide section.glass h2{font-size:1.65rem}
 .changelog ul{padding-left:24px}.changelog section{margin-top:24px}.changelog h2{margin-top:0}
+/* The phone menu (menu.js, 29 Oct): up to 700 px the header's links fold behind a "Menu" button in the motion switch's pill style; open, they stack below the logo as full-width rows. Wider screens keep the row of links and never show the button. */
+.menu-toggle{display:none;align-items:center;gap:10px;min-height:44px;padding:8px 16px;border:1px solid #2c2c2c26;border-radius:999px;background:#ffffffa6;color:#2c2c2c;font:700 .9rem Satoshi,system-ui,sans-serif;cursor:pointer}.menu-toggle:hover{border-color:#2c2c2c55}
+.menu-icon{position:relative;display:block;width:16px;height:10px;border-block:2px solid currentColor}.menu-icon::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:currentColor}
+.menu-open .menu-icon{border-block-color:transparent}.menu-open .menu-icon::before,.menu-open .menu-icon::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:currentColor;transform:rotate(45deg)}.menu-open .menu-icon::after{transform:rotate(-45deg)}
+@media(max-width:700px){header.has-menu{flex-direction:row;flex-wrap:wrap;align-items:center;gap:0 16px}.has-menu .menu-toggle{display:inline-flex}
+.has-menu nav{display:none;flex-basis:100%;flex-direction:column;gap:0;margin-top:16px;font-size:1rem}.menu-open nav{display:flex;animation:menu-in .18s ease-out}
+.has-menu nav>*{display:flex;align-items:center;min-height:48px;border-top:1px solid #2c2c2c14}
+.has-menu nav .nav-soon::after,.has-menu nav .nav-soon:last-child::after{position:static;transform:none;opacity:1;margin-left:10px;padding:0;background:none;color:inherit;font-size:.8rem;transition:none}}
+@keyframes menu-in{from{opacity:0;transform:translateY(-6px)}}
+@media(prefers-reduced-motion:reduce){html:not(.motion-on) .menu-open nav{animation:none}}html.still .menu-open nav{animation:none}
