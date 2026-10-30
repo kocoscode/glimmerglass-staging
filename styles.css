@@ -123,6 +123,9 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 /* The questions-and-answers guide: its one code example styled like the .glim page's. */
 .guide pre{background:#2c2c2c;color:#f4f4fa;border-radius:12px;padding:16px;overflow:auto;font-size:.8rem;line-height:1.5;margin:0 0 16px}.guide pre code{overflow-wrap:normal}.guide section.glass h2{font-size:1.65rem}
 .changelog ul{padding-left:24px}.changelog section{margin-top:24px}.changelog h2{margin-top:0}
+/* The Apple surfaces side by side at one height: each figure's share of the row is its image's width-to-height ratio. */
+.changelog-shots{display:flex;gap:16px;align-items:flex-start;margin:20px 0}.changelog-shots figure{margin:0;min-width:0}.changelog-shots img{display:block;width:100%;height:auto;border-radius:12px}.changelog-shots figcaption{margin-top:8px;font-size:.85rem;text-align:center}.changelog-shots .tall{flex:460 1 0}.changelog-shots .duo{flex:687 1 0}.changelog-shots .pad{flex:750 1 0}.changelog-shots .mac{flex:1600 1 0}
+@media(max-width:700px){.changelog-shots{flex-wrap:wrap}.changelog-shots figure{flex:1 1 calc(50% - 8px)}.changelog-shots .mac{flex-basis:100%}}
 /* The phone menu (menu.js, 29 Oct): up to 700 px the header's links fold behind a "Menu" button in the motion switch's pill style; open, they stack below the logo as full-width rows. Wider screens keep the row of links and never show the button. */
 .menu-toggle{display:none;align-items:center;gap:10px;min-height:44px;padding:8px 16px;border:1px solid #2c2c2c26;border-radius:999px;background:#ffffffa6;color:#2c2c2c;font:700 .9rem Satoshi,system-ui,sans-serif;cursor:pointer}.menu-toggle:hover{border-color:#2c2c2c55}
 .menu-icon{position:relative;display:block;width:16px;height:10px;border-block:2px solid currentColor}.menu-icon::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:currentColor}
