@@ -6,7 +6,7 @@
 - Price: the plugin is free to install from the Framer Marketplace; converting needs a license key, US$8, one payment, a lifetime license for one person, bought inside the plugin (delivered by Gumroad).
 - Conversion runs on the Glimmerglass server in Germany; uploads are deleted when the conversion finishes or fails.
 - An iPhone, iPad and Mac app is coming soon; it is not available yet.
-- Agents are welcome: an MCP server at https://convert.glimmerglass.app/mcp converts an animation into a .glim (with the user's license key), plays it inline in ChatGPT and Claude, and returns the embed code. Tools: convert_animation, check_conversion, show_animation, export_glim, list_animations. Playback settings (play always, on hover or in view; hover area; fit; speed; loop; pausable; play bar; background) are saved in the .glim.
+- Agents are welcome: an MCP server at https://convert.glimmerglass.app/mcp converts an animation into a .glim (the user signs in with their license key; never ask for it in chat), plays it inline in ChatGPT and Claude, and returns the embed code. Tools: get_transparent_animation_help, convert_animation, check_conversion, show_animation, export_glim, list_animations. Playback settings (play always, on hover or in view; hover area; fit; speed; loop; pausable; play bar; background) are saved in the .glim.
 
 ## Pages
 
@@ -16,6 +16,7 @@
 - [Connect an assistant](https://glimmerglass.app/connect.html): the MCP address and setup for ChatGPT, Claude, Claude Code, Cursor and other clients
 - [Your license](https://glimmerglass.app/license.html): what the key unlocks, in Framer and in assistants
 - [Privacy](https://glimmerglass.app/privacy.html): what happens to uploaded files and license data
+- [Terms](https://glimmerglass.app/terms.html): the license, your artwork and the service
 
 ## Get it
 
