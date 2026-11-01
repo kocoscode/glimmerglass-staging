@@ -138,3 +138,16 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 .has-menu nav .nav-soon::after,.has-menu nav .nav-soon:last-child::after{position:static;transform:none;opacity:1;margin-left:10px;padding:0;background:none;color:inherit;font-size:.8rem;transition:none}}
 @keyframes menu-in{from{opacity:0;transform:translateY(-6px)}}
 @media(prefers-reduced-motion:reduce){html:not(.motion-on) .menu-open nav{animation:none}}html.still .menu-open nav{animation:none}
+
+/* ---- the home hero (owner's mockup, 1 Nov 2026): three panes of glass, each holding a .glim, that a visitor can pick up and move (glass.js). Sizes are in units of one pane (--pane), measured from the mockup, where a pane is 505 px across 1512. Pictures stay upright inside a tilted pane. ---- */
+.glass-hero{text-align:center;margin:-16px 0 72px}.glass-hero h1{max-width:none;margin:0 auto;font-size:clamp(2.4rem,4.9vw,4.5rem)}.glass-hero h1 span{display:block}.glass-hero .actions{justify-content:center;gap:24px;margin-top:28px}.glass-hero .button{justify-content:center;min-width:220px;min-height:56px;border-radius:10px;font-weight:400}
+.panes{--pane:min(33.4vw,505px,max(300px,calc((100svh - 430px)/1.2)));position:relative;z-index:3;height:calc(var(--pane)*1.2);margin-top:40px}
+.pane{--r:0deg;position:absolute;left:calc(50% + var(--pane)*(var(--x) - .5));top:calc(var(--pane)*var(--y));width:var(--pane);height:var(--pane);border-radius:calc(var(--pane)*.095);border:1.5px solid #ffffffd9;background:linear-gradient(160deg,#ffffff40,#ffffff14);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 4px 0 #afc0d6,0 24px 60px #55476318;transform:translate(var(--dx,0),var(--dy,0)) rotate(var(--r));will-change:transform;cursor:grab;touch-action:pan-y pinch-zoom;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;transition:scale .18s ease,box-shadow .18s ease}
+.pane:focus-visible{outline:2px solid #2c2c2c;outline-offset:4px}.pane.held{cursor:grabbing;scale:1.02;box-shadow:0 4px 0 #afc0d6,0 40px 90px #55476330}
+.pane-clip{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
+.pane-art{position:absolute;inset:-2%;transform:rotate(calc(var(--r)*-1));pointer-events:none}.pane-art img,.pane-art video{pointer-events:none;-webkit-user-drag:none}
+.pane-knight{--x:-.667;--y:.1;--r:-7.5deg;z-index:3}.pane-knight .pane-art{inset:auto;left:-21%;top:-11%;width:150%;aspect-ratio:1}
+.pane-brush{--x:0;--y:0;z-index:2}
+.pane-tree{--x:.69;--y:.11;--r:7.5deg;z-index:1}
+.how-label{margin:0 0 16px}.how-title{font-size:clamp(2.2rem,5.6vw,4.5rem);margin:0}.how-title span{display:block;white-space:nowrap}
+@media(max-width:700px){.glass-hero{margin-bottom:48px}.glass-hero .actions{gap:12px}.glass-hero .button{min-width:0;width:100%}.glass-hero .actions .soon-wrap{width:100%}.panes{--pane:62vw;height:calc(var(--pane)*2.05);margin-top:28px}.pane-knight{--x:-.26;--y:.04}.pane-brush{--x:.26;--y:.56}.pane-tree{--x:-.2;--y:1.04}.how-title{font-size:clamp(1.9rem,9vw,2.7rem)}}

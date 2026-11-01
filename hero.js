@@ -104,10 +104,11 @@ if (video && toggle) {
   });
 }
 
-// The App Store button is not available yet. It does nothing when pressed, and says so on hover and on focus.
-const soon = document.getElementById('app-store');
-const note = document.getElementById('app-store-note');
-if (soon && note) {
+// The App Store buttons are not available yet. They do nothing when pressed, and say so on hover and on focus.
+document.querySelectorAll('.soon-wrap').forEach((wrap) => {
+  const soon = wrap.querySelector('.button.soon');
+  const note = wrap.querySelector('.soon-note');
+  if (!soon || !note) return;
   const show = () => { note.hidden = false; };
   const hide = () => { note.hidden = true; };
   soon.addEventListener('click', (event) => event.preventDefault());
@@ -116,4 +117,4 @@ if (soon && note) {
   soon.addEventListener('focus', show);
   soon.addEventListener('mouseleave', hide);
   soon.addEventListener('blur', hide);
-}
+});
