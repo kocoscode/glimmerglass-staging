@@ -25,20 +25,19 @@ for (const pane of panes) {
   let focused = false;
   let player = null;
 
+  // Nothing of a .glim is fetched until its pane is first wanted: a visitor who never touches the panes gets only the
+  // still pictures. After that the player reads the file's list and fetches the one video that fits this screen.
+  const art = pane.querySelector('.pane-art');
   const refresh = () => {
-    if (!player) return;
-    if (held || tapped === pane || (!still() && (hovering || focused))) player.play();
+    const wanted = held || tapped === pane || (!still() && (hovering || focused));
+    if (!player) {
+      if (!wanted || !window.Glimmerglass || !art) return;
+      player = Glimmerglass.mount(art, { manifest: art.dataset.glim, alt: art.dataset.alt, play: 'always', autoplay: false, control: 'never', preload: 'auto' });
+    }
+    if (wanted) player.play();
     else player.pause();
   };
   refreshers.push(refresh);
-  // Mounted once the page has loaded, so the files don't compete with its first paint; ready before anyone gets there.
-  const art = pane.querySelector('.pane-art');
-  const mount = () => {
-    if (!window.Glimmerglass || !art) return;
-    player = Glimmerglass.mount(art, { manifest: art.dataset.glim, alt: art.dataset.alt, play: 'always', autoplay: false, control: 'never', preload: 'auto' });
-    refresh();
-  };
-  if (document.readyState === 'complete') mount(); else addEventListener('load', mount, { once: true });
 
   const place = () => {
     pane.style.setProperty('--dx', `${x}px`);
