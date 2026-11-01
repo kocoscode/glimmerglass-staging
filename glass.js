@@ -1,11 +1,18 @@
-// The home page's panes of glass. Hold one and move it around while its animation keeps playing; the frost is the
-// browser's backdrop-filter, so it shows whatever the pane is over, other panes included.
+// The home page's panes of glass. Each animation holds still until the pointer is over its pane (owner, 1 Nov 2026:
+// three playing at once would overwhelm the page). Hold a pane and move it around and it keeps playing. The frost is
+// the browser's backdrop-filter, so it shows whatever the pane is over, other panes included.
+// The page drives the player itself, because a pane must also play while a finger holds it, and the player's own
+// "hover" would count the end of every drag as a tap. A tap on a touch screen starts one pane and stops any other.
+// With motion turned off (motion.js) a pane moves only while it is held: that is the visitor asking.
 // A mouse picks a pane up at once. A finger has to be able to scroll the page past the panes, so it picks one up by
 // holding still for a moment or by moving sideways; moving up or down first scrolls as usual.
 const HOLD_MS = 180;
 const SLOP = 10;
 const panes = [...document.querySelectorAll('.pane')];
 let front = panes.length + 1;
+let tapped = null;  // the pane a tap has started
+const still = () => (window.glimmerglassStill ? window.glimmerglassStill() : matchMedia('(prefers-reduced-motion: reduce)').matches);
+const refreshers = [];
 
 for (const pane of panes) {
   let x = 0, y = 0;            // where the pane has been moved to
@@ -14,6 +21,24 @@ for (const pane of panes) {
   let limits = null;
   let waiting = null;          // a finger is down, and hasn't yet picked the pane up
   let held = false;
+  let hovering = false;
+  let focused = false;
+  let player = null;
+
+  const refresh = () => {
+    if (!player) return;
+    if (held || tapped === pane || (!still() && (hovering || focused))) player.play();
+    else player.pause();
+  };
+  refreshers.push(refresh);
+  // Mounted once the page has loaded, so the files don't compete with its first paint; ready before anyone gets there.
+  const art = pane.querySelector('.pane-art');
+  const mount = () => {
+    if (!window.Glimmerglass || !art) return;
+    player = Glimmerglass.mount(art, { manifest: art.dataset.glim, alt: art.dataset.alt, play: 'always', autoplay: false, control: 'never', preload: 'auto' });
+    refresh();
+  };
+  if (document.readyState === 'complete') mount(); else addEventListener('load', mount, { once: true });
 
   const place = () => {
     pane.style.setProperty('--dx', `${x}px`);
@@ -46,12 +71,14 @@ for (const pane of panes) {
     measure();
     pane.classList.add('held');
     pane.setPointerCapture(pointerId);
+    refresh();
   };
   const letGo = () => {
     clearTimeout(waiting);
     waiting = null;
     held = false;
     pane.classList.remove('held');
+    refresh();
   };
 
   pane.addEventListener('pointerdown', (event) => {
@@ -74,8 +101,22 @@ for (const pane of panes) {
     }
     if (held) moveTo(fromX + dx, fromY + dy);
   });
-  pane.addEventListener('pointerup', letGo);
+  pane.addEventListener('pointerup', () => {
+    // A finger that went down and came up without picking the pane up is a tap.
+    if (waiting !== null) {
+      tapped = tapped === pane ? null : pane;
+      letGo();
+      refreshers.forEach((update) => update());
+      return;
+    }
+    letGo();
+  });
   pane.addEventListener('pointercancel', letGo);
+  pane.addEventListener('pointerenter', (event) => { if (event.pointerType !== 'touch') { hovering = true; refresh(); } });
+  pane.addEventListener('pointerleave', (event) => { if (event.pointerType !== 'touch') { hovering = false; refresh(); } });
+  // By keyboard, reaching a pane is the same as hovering over it. A mouse click focuses it too, and that must not count.
+  pane.addEventListener('focus', () => { focused = pane.matches(':focus-visible'); refresh(); });
+  pane.addEventListener('blur', () => { focused = false; refresh(); });
   // Once a finger has the pane, the page must not scroll under it. Only a listener that can cancel touchmove stops that.
   pane.addEventListener('touchmove', (event) => { if (held) event.preventDefault(); }, { passive: false });
   pane.addEventListener('contextmenu', (event) => { if (held || waiting !== null) event.preventDefault(); });
