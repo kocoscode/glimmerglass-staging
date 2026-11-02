@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Regex test</title></head>
+<body style="font:16px -apple-system,sans-serif;padding:16px"><h1 style="font-size:20px">Long-text check</h1><pre id="out">running…</pre>
+<script>
+const re=/^[A-Za-z0-9+/]*={0,2}$/, rows=[];
+for (const n of [100000, 500000, 680000, 800000, 1000000, 1400000, 2000000, 6000000]) {
+  const s="QUJD".repeat(n/4); let r; const t=performance.now();
+  try { r=re.test(s) } catch(e) { r="threw "+e.name+": "+e.message }
+  rows.push(n.toLocaleString()+" chars: "+r+" ("+Math.round(performance.now()-t)+" ms)");
+}
+document.getElementById("out").textContent=navigator.userAgent+"\n\n"+rows.join("\n");
+</script></body></html>
