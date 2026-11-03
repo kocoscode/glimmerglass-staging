@@ -165,21 +165,26 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 .assistants>h2,.assistants .in-chat{margin-top:104px}.assistants>h2+ul,.assistants>h2+pre{margin-top:20px}.assistants>pre+p{margin-top:72px}
 @media(max-width:700px){.assistants>h2,.assistants .in-chat{margin-top:64px}.assistants>pre+p{margin-top:48px}}
 /* The Assistants hero (assistants.js), laid out like the Framer page's story above and sharing its .story, .s and .obj
-   rules. The houses are whole 816 x 1200 frames as the converter gives them, art and transparent margin alike, so each
-   .vis is that frame's shape (0.68 wide) and --x pulls it left until the painted house sits in its advance. Lines are
-   a little taller than the Framer page's so a house in the text stays clear of the line above; the three houses of
-   the last line stand in front of it, in the room its top margin leaves. */
+   rules, with one difference: the houses are big enough to watch, so each takes real room in its line (the line grows
+   to fit it) instead of being drawn over the lines around it. The houses are whole 816 x 1200 frames as the converter
+   gives them, art and transparent margin alike, so .vis keeps that frame (0.68 wide) and is shifted so only the painted
+   house fills the .obj: --ax and --ab are the art's left and bottom margins, --aw and --ah its width and height, as
+   fractions of the frame. */
 .house-story .story-text{line-height:1.55}
-.o-house .vis{width:calc(var(--vh)*.68)}
+.o-house{--vh:3.6em}
+.o-house.obj{width:calc(var(--vh)*.68*var(--aw));height:calc(var(--vh)*var(--ah));vertical-align:-.22em;margin:0 .08em}
+.o-house.obj>.vis{left:calc(var(--vh)*-.68*var(--ax));bottom:calc(var(--vh)*-1*var(--ab));width:calc(var(--vh)*.68);height:var(--vh)}
 .o-house .vis img{display:block;width:100%;height:100%}
-/* The bakeries are too big to sit in a line of text, so each floats beside its sentence and the words wrap around it;
-   the negative side margins let the text into the frame's transparent edge. */
-.o-bakery.obj{float:right;--vh:4.6em;width:calc(var(--vh)*.68);height:var(--vh);margin:0 calc(var(--vh)*-.05) .15em .25em}
-.o-bakery.obj>.vis{left:0;bottom:0;width:100%;height:100%}
-.o-bakery.o-after{margin-top:.35em}
-.welcome-line{display:block;margin-top:3.3em;padding-bottom:.3em}
-.o-street{--vh:4.2em;--w:1.16em;--x:-.61em;--b:-.19em}
-.o-sage.o-street{--w:2.1em}
+.o-rose{--ax:.096;--aw:.839;--ab:.041;--ah:.934}
+.o-ochre{--ax:.222;--aw:.631;--ab:.048;--ah:.908}
+.o-lavender{--ax:.202;--aw:.631;--ab:.041;--ah:.927}
+.o-sage{--ax:.221;--aw:.663;--ab:.042;--ah:.931}
+/* The last line's three houses stand wall to wall, each tucked a little behind the next, like a European street. */
+.welcome-line{display:block;margin-top:.9em;padding-bottom:.3em}
+.o-street{--vh:4.2em}
+.o-street.obj{margin:0}
+.o-street.obj+.o-street.obj{margin-left:calc(var(--vh)*-.15)}
+.o-sage.o-street.obj{margin-right:.25em}
 .sign{display:inline-block;font:700 .4em/1 Satoshi,system-ui,sans-serif;letter-spacing:.02em;color:#f6ead2;background:#6e4a2e;padding:.38em .6em .34em;border-radius:.2em;transform:rotate(-4deg);vertical-align:.4em;box-shadow:0 .1em .25em #2c2c2c33;white-space:nowrap}
 .connect-eyebrow{margin-top:104px}.assistants>.connect-eyebrow+h2{margin-top:0}
-@media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-bakery.obj{--vh:5.6em}}
+@media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-house{--vh:4.6em}.o-street{--vh:4.8em}}
