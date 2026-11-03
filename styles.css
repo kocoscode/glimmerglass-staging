@@ -156,3 +156,6 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 .pane-tree{--x:.69;--y:.11;--r:7.5deg;z-index:1}
 .hero-intro{display:block}.how-title{font-size:clamp(2rem,3.6vw,3.25rem);margin:0}.hero-intro .lead{margin-top:16px}
 @media(max-width:700px){.glass-hero{margin-bottom:48px}.glass-hero .actions{gap:12px}.panes{--pane:62vw;height:calc(var(--pane)*2.05);margin-top:28px}.pane-knight{--x:-.26;--y:.04}.pane-brush{--x:.26;--y:.56}.pane-tree{--x:-.2;--y:1.04}}
+/* Assistants page: each assistant's instructions beside a capture of Glimmerglass working in it. */
+.in-chat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:32px;align-items:start;margin-top:40px}.in-chat h2{margin-top:0}.in-chat figure{display:block;margin:0}.in-chat img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid #fff;background:#fff;box-shadow:0 14px 36px #3a2c5a1f}.in-chat figcaption{margin:10px 0 0}
+@media(max-width:700px){.in-chat{grid-template-columns:1fr;gap:16px}}
