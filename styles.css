@@ -172,10 +172,14 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 .house-story .story-text{line-height:1.55}
 .o-house .vis{width:calc(var(--vh)*.68)}
 .o-house .vis img{display:block;width:100%;height:100%}
-.o-rose{--w:1em;--x:-.04em;--b:-.23em;--vh:1.56em}
-.welcome-line{display:block;margin-top:1.9em;padding-bottom:.3em}
-.o-street{--vh:2.6em;--w:.72em;--x:-.38em;--b:-.12em}
-.o-sage.o-street{--w:1.3em}
+/* The bakeries are too big to sit in a line of text, so each floats beside its sentence and the words wrap around it;
+   the negative side margins let the text into the frame's transparent edge. */
+.o-bakery.obj{float:right;--vh:4.6em;width:calc(var(--vh)*.68);height:var(--vh);margin:0 calc(var(--vh)*-.05) .15em .25em}
+.o-bakery.obj>.vis{left:0;bottom:0;width:100%;height:100%}
+.o-bakery.o-after{margin-top:.35em}
+.welcome-line{display:block;margin-top:3.3em;padding-bottom:.3em}
+.o-street{--vh:4.2em;--w:1.16em;--x:-.61em;--b:-.19em}
+.o-sage.o-street{--w:2.1em}
 .sign{display:inline-block;font:700 .4em/1 Satoshi,system-ui,sans-serif;letter-spacing:.02em;color:#f6ead2;background:#6e4a2e;padding:.38em .6em .34em;border-radius:.2em;transform:rotate(-4deg);vertical-align:.4em;box-shadow:0 .1em .25em #2c2c2c33;white-space:nowrap}
 .connect-eyebrow{margin-top:104px}.assistants>.connect-eyebrow+h2{margin-top:0}
-@media(max-width:700px){.connect-eyebrow{margin-top:64px}}
+@media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-bakery.obj{--vh:5.6em}}
