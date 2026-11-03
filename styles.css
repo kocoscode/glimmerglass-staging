@@ -164,3 +164,18 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 /* Room between the page's sections: each heading, and each assistant with its capture, starts well clear of the one before. */
 .assistants>h2,.assistants .in-chat{margin-top:104px}.assistants>h2+ul,.assistants>h2+pre{margin-top:20px}.assistants>pre+p{margin-top:72px}
 @media(max-width:700px){.assistants>h2,.assistants .in-chat{margin-top:64px}.assistants>pre+p{margin-top:48px}}
+/* The Assistants hero (assistants.js), laid out like the Framer page's story above and sharing its .story, .s and .obj
+   rules. The houses are whole 816 x 1200 frames as the converter gives them, art and transparent margin alike, so each
+   .vis is that frame's shape (0.68 wide) and --x pulls it left until the painted house sits in its advance. Lines are
+   a little taller than the Framer page's so a house in the text stays clear of the line above; the three houses of
+   the last line stand in front of it, in the room its top margin leaves. */
+.house-story .story-text{line-height:1.55}
+.o-house .vis{width:calc(var(--vh)*.68)}
+.o-house .vis img{display:block;width:100%;height:100%}
+.o-rose{--w:1em;--x:-.04em;--b:-.23em;--vh:1.56em}
+.welcome-line{display:block;margin-top:1.9em;padding-bottom:.3em}
+.o-street{--vh:2.6em;--w:1.2em;--x:-.37em;--b:-.12em}
+.o-sage.o-street{--w:1.35em}
+.sign{display:inline-block;font:700 .4em/1 Satoshi,system-ui,sans-serif;letter-spacing:.02em;color:#f6ead2;background:#6e4a2e;padding:.38em .6em .34em;border-radius:.2em;transform:rotate(-4deg);vertical-align:.4em;box-shadow:0 .1em .25em #2c2c2c33;white-space:nowrap}
+.connect-eyebrow{margin-top:104px}.assistants>.connect-eyebrow+h2{margin-top:0}
+@media(max-width:700px){.connect-eyebrow{margin-top:64px}}
