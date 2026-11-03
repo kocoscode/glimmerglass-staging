@@ -171,11 +171,17 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
    house fills the .obj: --ax and --ab are the art's left and bottom margins, --aw and --ah its width and height, as
    fractions of the frame. */
 .house-story .story-text{line-height:1.55}
+.house-story{padding-top:1.4em}
 .o-house{--vh:3.6em}
 .o-house.obj{width:calc(var(--vh)*.68*var(--aw));height:calc(var(--vh)*var(--ah));vertical-align:-.22em;margin:0 .08em}
 .o-house.obj>.vis{left:calc(var(--vh)*-.68*var(--ax));bottom:calc(var(--vh)*-1*var(--ab));width:calc(var(--vh)*.68);height:var(--vh)}
 .o-house .vis img{display:block;width:100%;height:100%}
 .o-rose{--ax:.096;--aw:.839;--ab:.041;--ah:.934}
+/* The bakeries lead and the words follow: like the Framer page's pictures, a bakery keeps only a short box in its
+   line, so the line keeps its height and the bakery is drawn up over the line above, in front of it. */
+.o-rose.obj{height:.6em;vertical-align:baseline;margin:0 .1em}
+.o-rose.obj>.vis{bottom:calc(var(--vh)*-1*var(--ab) - .3em)}
+.o-rose{--vh:3.9em}
 .o-ochre{--ax:.222;--aw:.631;--ab:.048;--ah:.908}
 .o-lavender{--ax:.202;--aw:.631;--ab:.041;--ah:.927}
 .o-sage{--ax:.221;--aw:.663;--ab:.042;--ah:.931}
@@ -185,6 +191,9 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 .o-street.obj{margin:0}
 .o-street.obj+.o-street.obj{margin-left:calc(var(--vh)*-.15)}
 .o-sage.o-street.obj{margin-right:.25em}
+/* Down the street, each house stands a little lower than the one on its left. */
+.o-lavender.o-street.obj{vertical-align:-.5em}
+.o-sage.o-street.obj{vertical-align:-.78em}
 .sign{display:inline-block;font:700 .4em/1 Satoshi,system-ui,sans-serif;letter-spacing:.02em;color:#f6ead2;background:#6e4a2e;padding:.38em .6em .34em;border-radius:.2em;transform:rotate(-4deg);vertical-align:.4em;box-shadow:0 .1em .25em #2c2c2c33;white-space:nowrap}
 .connect-eyebrow{margin-top:104px}.assistants>.connect-eyebrow+h2{margin-top:0}
-@media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-house{--vh:4.6em}.o-street{--vh:4.8em}}
+@media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-house{--vh:4.6em}.o-rose{--vh:4.8em}.o-street{--vh:4.8em}}
