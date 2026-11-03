@@ -161,3 +161,6 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 .in-chat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,720px);gap:40px;align-items:center;margin-top:48px}.in-chat h2{margin-top:0}.in-chat figure{display:block;margin:0}.in-chat figure a{display:block;cursor:zoom-in}.in-chat img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid #fff;background:#fff;box-shadow:0 14px 36px #3a2c5a1f}.in-chat figcaption{margin:10px 0 0}
 .in-chat.flip{grid-template-columns:minmax(0,720px) minmax(0,1fr)}.in-chat.flip figure{order:-1}
 @media(max-width:1100px){.in-chat,.in-chat.flip{grid-template-columns:minmax(0,820px);gap:20px}.in-chat.flip figure{order:0}}
+/* Room between the page's sections: each heading, and each assistant with its capture, starts well clear of the one before. */
+.assistants>h2,.assistants .in-chat{margin-top:104px}.assistants>h2+ul,.assistants>h2+pre{margin-top:20px}.assistants>pre+p{margin-top:72px}
+@media(max-width:700px){.assistants>h2,.assistants .in-chat{margin-top:64px}.assistants>pre+p{margin-top:48px}}
