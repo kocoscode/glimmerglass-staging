@@ -181,19 +181,31 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
    line, so the line keeps its height and the bakery is drawn up over the line above, in front of it. */
 .o-rose.obj{height:.6em;vertical-align:baseline;margin:0 .1em}
 .o-rose.obj>.vis{bottom:calc(.32em - var(--vh)*(var(--ab) + var(--ah)/2))}
-.o-rose{--vh:3.9em}
+.o-rose{--vh:2.6em}
 .o-ochre{--ax:.222;--aw:.631;--ab:.048;--ah:.908}
 .o-lavender{--ax:.202;--aw:.631;--ab:.041;--ah:.927}
 .o-sage{--ax:.221;--aw:.663;--ab:.042;--ah:.931}
 /* The last line's three houses stand wall to wall, each tucked a little behind the next, like a European street. */
-.welcome-line{display:block;margin-top:.9em;padding-bottom:.3em}
+/* The words stand beside the street, centred on the houses, and wrap there. */
+.welcome-line{display:flex;align-items:center;margin-top:.9em;padding-bottom:.3em}.welcome-line>.obj{flex:none}
 .o-street{--vh:4.2em}
 .o-street.obj{margin:0}
 .o-street.obj+.o-street.obj{margin-left:calc(var(--vh)*-.15)}
-.o-sage.o-street.obj{margin-right:.25em}
+.o-sage.o-street.obj{margin-right:.4em}
 /* Down the street, each house stands a little lower than the one on its left. */
-.o-lavender.o-street.obj{vertical-align:-.32em}
-.o-sage.o-street.obj{vertical-align:-.42em}
+.o-lavender.o-street.obj{top:.1em}
+.o-sage.o-street.obj{top:.2em}
 .sign{display:inline-block;font:700 .4em/1 Satoshi,system-ui,sans-serif;letter-spacing:.02em;color:#f6ead2;background:#6e4a2e;padding:.38em .6em .34em;border-radius:.2em;transform:rotate(-4deg);vertical-align:.4em;box-shadow:0 .1em .25em #2c2c2c33;white-space:nowrap}
 .connect-eyebrow{margin-top:104px}.assistants>.connect-eyebrow+h2{margin-top:0}
-@media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-house{--vh:4.6em}.o-rose{--vh:4.8em}.o-street{--vh:4.8em}}
+@media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-house{--vh:4.6em}.o-rose{--vh:2.7em}.o-street{--vh:4.8em}}
+.story-buy .key-link{margin-top:12px;text-align:center;font-size:.9rem;color:#625968}
+.in-chat figcaption{font-style:italic;font-synthesis:style;font-size:.85rem;color:#625968}
+/* Connect: the address in its own box with a Copy button, then three numbered steps (like the home page's workflow). */
+.mcp-address{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:32px 0 0;padding:16px 18px;background:#ffffffa6;border:1px solid #fff;border-radius:16px}.mcp-label{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#625968}.mcp-address code{flex:1 1 auto;font-size:1rem}.copy-address{min-height:36px;padding:6px 16px;border:1px solid #2c2c2c26;border-radius:999px;background:#fff;color:#2c2c2c;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer}.copy-address:hover{border-color:#2c2c2c55}
+.prose .connect-steps{list-style:none;counter-reset:step;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;padding:0;margin:32px 0 0}.prose .connect-steps li{counter-increment:step;margin:0;padding:16px 0 0;border-top:1px solid #62596835}.connect-steps li::before{content:counter(step,decimal-leading-zero);display:block;font-size:.8rem;letter-spacing:.12em;color:#625968;margin-bottom:8px}.connect-steps strong{display:block;font-family:Goudy,'Goudy Fallback',Georgia,serif;font-size:1.45rem;font-weight:400;line-height:1.2;margin-bottom:8px}.connect-steps span{display:block;font-size:.95rem}
+/* What it can do: one card per tool, a plain name first and the tool's own name under it. */
+.tools-note{color:#625968}.tools{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:0;margin:24px 0 0}.prose .tools li{display:flex;flex-direction:column;gap:6px;margin:0;padding:20px 22px;background:#ffffffa6;border:1px solid #fff;border-radius:16px}.tools h3{margin:0;font-size:1.05rem}.tools code{font-size:.78rem;color:#625968}.prose .tools p{margin:4px 0 0;font-size:.95rem}.key-tag{align-self:flex-start;margin-top:auto;padding:3px 10px;border-radius:999px;background:#5b126714;color:#5b1267;font-size:.78rem;font-weight:700}.key-tag.free{background:#2c2c2c0d;color:#625968}.tools p+.key-tag{margin-top:10px}
+@media(max-width:1000px){.tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.prose .connect-steps,.tools{grid-template-columns:minmax(0,1fr)}.prose .connect-steps{gap:20px}}
+/* Footer, every page: the credit on the first line (with the Motion switch at its far end where a page has one), the links in an even row under it. */
+footer{justify-content:flex-start;column-gap:28px;row-gap:10px}footer::before{content:"";flex-basis:100%;order:2}.footer-brand{order:0;margin-right:auto}footer .motion-toggle{order:1}footer>a{order:3}

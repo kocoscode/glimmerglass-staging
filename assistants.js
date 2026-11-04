@@ -2,6 +2,14 @@
 // carries data-at, its second in the play-through. The houses are .glims played by our player; they loop while on
 // screen and rest on their posters with reduced motion. Any scroll, key or tap shows everything at once.
 (function () {
+  // The server address's Copy button, shown only where the browser can copy.
+  if (navigator.clipboard) Array.prototype.forEach.call(document.querySelectorAll(".copy-address"), function (button) {
+    button.hidden = false;
+    button.addEventListener("click", function () {
+      navigator.clipboard.writeText(button.getAttribute("data-copy")).then(function () { button.textContent = "Copied"; setTimeout(function () { button.textContent = "Copy"; }, 1600); });
+    });
+  });
+
   var story = document.getElementById("story");
   if (!story) return;
   var reduce = window.glimmerglassStill ? window.glimmerglassStill() : !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);  // motion.js answers for the whole site
