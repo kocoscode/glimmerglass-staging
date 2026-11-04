@@ -199,6 +199,8 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 .connect-eyebrow{margin-top:104px}.assistants>.connect-eyebrow+h2{margin-top:0}
 @media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-house{--vh:4.6em}.o-rose{--vh:2.7em}.o-street{--vh:4.8em}}
 .story-buy .key-link{margin-top:12px;text-align:center;font-size:.9rem;color:#625968}
+/* The ChatGPT and Claude examples are short films of the real chats (assistants.js plays them only on screen). */
+.chat-film{display:block;width:100%;height:auto;border-radius:16px;border:1px solid #fff;background:#fff;box-shadow:0 14px 36px #3a2c5a1f}
 .in-chat figcaption{font-style:italic;font-synthesis:style;font-size:.85rem;color:#625968}
 /* Connect: the address in its own box with a Copy button, then three numbered steps (like the home page's workflow). */
 .mcp-address{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:32px 0 0;padding:16px 18px;background:#ffffffa6;border:1px solid #fff;border-radius:16px}.mcp-label{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#625968}.mcp-address code{flex:1 1 auto;font-size:1rem}.copy-address{min-height:36px;padding:6px 16px;border:1px solid #2c2c2c26;border-radius:999px;background:#fff;color:#2c2c2c;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer}.copy-address:hover{border-color:#2c2c2c55}

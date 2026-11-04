@@ -10,6 +10,16 @@
     });
   });
 
+  // The ChatGPT and Claude films: muted loops that play only while on screen, and rest on their posters when motion is off.
+  var films = document.querySelectorAll(".chat-film");
+  var filmsStill = window.glimmerglassStill ? window.glimmerglassStill() : !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  if (films.length && !filmsStill && window.IntersectionObserver) {
+    var watch = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); } else e.target.pause(); });
+    }, { threshold: 0.25 });
+    Array.prototype.forEach.call(films, function (film) { watch.observe(film); });
+  }
+
   var story = document.getElementById("story");
   if (!story) return;
   var reduce = window.glimmerglassStill ? window.glimmerglassStill() : !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);  // motion.js answers for the whole site
