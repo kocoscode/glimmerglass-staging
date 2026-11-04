@@ -187,14 +187,14 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 .o-sage{--ax:.221;--aw:.663;--ab:.042;--ah:.931}
 /* The last line's three houses stand wall to wall, each tucked a little behind the next, like a European street. */
 /* The words stand beside the street, centred on the houses, and wrap there. */
-.welcome-line{display:flex;align-items:center;margin-top:.9em;padding-bottom:.3em}.welcome-line>.obj{flex:none}
+.welcome-line{display:flex;align-items:center;margin-top:.9em;padding-bottom:.3em}.welcome-line>.obj{flex:none;align-self:flex-end}.welcome-words{line-height:1.12}
 .o-street{--vh:4.2em}
 .o-street.obj{margin:0}
 .o-street.obj+.o-street.obj{margin-left:calc(var(--vh)*-.15)}
 .o-sage.o-street.obj{margin-right:.4em}
 /* Down the street, each house stands a little lower than the one on its left. */
-.o-lavender.o-street.obj{top:.1em}
-.o-sage.o-street.obj{top:.2em}
+.o-lavender.o-street.obj{top:.06em}
+.o-sage.o-street.obj{top:.12em}
 .sign{display:inline-block;font:700 .4em/1 Satoshi,system-ui,sans-serif;letter-spacing:.02em;color:#f6ead2;background:#6e4a2e;padding:.38em .6em .34em;border-radius:.2em;transform:rotate(-4deg);vertical-align:.4em;box-shadow:0 .1em .25em #2c2c2c33;white-space:nowrap}
 .connect-eyebrow{margin-top:104px}.assistants>.connect-eyebrow+h2{margin-top:0}
 @media(max-width:700px){.connect-eyebrow{margin-top:64px}.o-house{--vh:4.6em}.o-rose{--vh:2.7em}.o-street{--vh:4.8em}}
