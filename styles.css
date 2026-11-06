@@ -239,3 +239,6 @@ footer{justify-content:flex-start;column-gap:28px;row-gap:10px}footer::before{co
 .report-cancel{border:0;background:none;padding:8px 4px;color:#625968;font:inherit;font-weight:700;cursor:pointer}.report-cancel:hover{color:#2c2c2c}
 .report-done h2{margin-bottom:8px}.report-done p{color:#625968}.report-done .button{border:0;font:inherit;font-weight:700;cursor:pointer}
 @media(max-width:700px){.report{padding:22px 20px 20px}.report h2{font-size:1.7rem}}
+/* The app on three devices side by side, as tall as each other (flex grows by each file's width); on phones the iPad takes the first row. */
+.app-trio{flex-wrap:wrap;align-items:flex-end;gap:28px;max-width:960px;margin-left:auto;margin-right:auto}.trio-device{flex:var(--f) 1 0;min-width:0}.trio-iphone{--f:574}.trio-duo{--f:844}.trio-ipad{--f:924}
+@media(max-width:700px){.app-trio{gap:16px}.trio-ipad{flex:0 0 84%;order:-1}.trio-iphone{flex:0 0 34%}.trio-duo{flex:0 0 50%}}
