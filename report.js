@@ -1,5 +1,6 @@
 // "Report a bug", on every page: a link at the end of the footer opens a short form in an overlay (owner, 6 Nov 2026).
-// Where it happened, what was being converted, and up to 1,000 characters of description go to Michael's inbox.
+// Where it happened, what was being converted, and up to 1,000 characters of description go to The House of Koco's inbox.
+// The page address and browser details go along only when the visitor ticks the box asking for them (owner, 6 Nov).
 // REPORT_ENDPOINT is the Google Apps Script web app in source/bug-report/ (it emails mike@houseofkoco.com from his own
 // Google account, so no other company handles the reports). Until that address is set, or if sending fails, the form
 // opens the visitor's email app with the same report already written.
@@ -25,7 +26,7 @@
       '<form class="report-form" novalidate>' +
         '<div class="report-head"><h2 id="report-title">Report a bug</h2>' +
         '<button type="button" class="report-close" aria-label="Close">&times;</button></div>' +
-        '<p class="report-lede">It goes straight to Michael, who makes Glimmerglass.</p>' +
+        '<p class="report-lede">It goes straight to The House of Koco, where we will process the bug and fix it as soon as possible.</p>' +
         '<fieldset><legend>Where did it happen?</legend><div class="report-pills">' + pills("surface", SURFACES) + "</div></fieldset>" +
         '<fieldset><legend>What were you converting?</legend><div class="report-pills">' + pills("conversion", CONVERSIONS) + "</div></fieldset>" +
         '<label class="report-field"><span class="report-label">What happened?</span>' +
@@ -34,7 +35,7 @@
         '<label class="report-field"><span class="report-label">Your email <span class="report-optional">if you would like a reply</span></span>' +
           '<input type="email" name="email" autocomplete="email" maxlength="200"></label>' +
         '<label class="report-trap" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>' +
-        '<p class="report-note">Sent with it: the page you are on and your browser and system, so the problem can be reproduced.</p>' +
+        '<label class="report-share"><input type="checkbox" name="share"><span>Include this page’s address and my browser and system, to help us reproduce the bug</span></label>' +
         '<p class="report-error" role="alert" hidden></p>' +
         '<div class="report-actions"><button type="submit" class="button">Send report</button>' +
         '<button type="button" class="report-cancel">Cancel</button></div>' +
@@ -78,9 +79,10 @@
       if (email && !form.elements.email.checkValidity()) { error.textContent = "That email address doesn't look right."; error.hidden = false; return; }
       var report = {
         surface: surface, conversion: conversion, description: description.slice(0, MAX), email: email,
-        page: location.href.split("#")[0], browser: navigator.userAgent, sentAt: new Date().toISOString(),
+        sentAt: new Date().toISOString(),
         website: form.elements.website.value
       };
+      if (form.elements.share.checked) { report.page = location.href.split("#")[0]; report.browser = navigator.userAgent; }
       if (report.website) { done(false); return; } // a bot filled the hidden field: pretend it went
       if (!REPORT_ENDPOINT) { mail(report); return; }
       send.disabled = true; send.textContent = "Sending…";
@@ -97,8 +99,8 @@
 
     function done(byMail) {
       d.querySelector(".report-done-text").textContent = byMail
-        ? "Your email app has the report ready. Press send there and it reaches Michael."
-        : "Michael has your report. If you left an email address, he can write back.";
+        ? "Your email app has the report ready. Press send there and it reaches The House of Koco."
+        : "The House of Koco has your report. If you left an email address, we can write back.";
       form.reset(); count.textContent = "0 / " + MAX;
       form.hidden = true; d.querySelector(".report-done").hidden = false;
       d.querySelector(".report-close-done").focus();
@@ -108,7 +110,7 @@
 
   function mailto(r) {
     var body = "Where: " + r.surface + "\nConverting: " + r.conversion + "\n\n" + r.description +
-      "\n\n—\nPage: " + r.page + "\nBrowser: " + r.browser;
+      (r.page ? "\n\n—\nPage: " + r.page + "\nBrowser: " + r.browser : "");
     return "mailto:" + TO + "?subject=" + encodeURIComponent("Glimmerglass bug: " + r.surface + " · " + r.conversion) + "&body=" + encodeURIComponent(body);
   }
 

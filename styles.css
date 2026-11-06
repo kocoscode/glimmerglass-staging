@@ -232,7 +232,7 @@ footer{justify-content:flex-start;column-gap:28px;row-gap:10px}footer::before{co
 .report textarea{resize:vertical;min-height:120px}.report textarea:focus,.report input[type=email]:focus{outline:3px solid #635477;outline-offset:1px}
 .report-count{display:block;text-align:right;margin-top:4px;font-size:.8rem;color:#625968}
 .report-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.report-note{margin:14px 0 0;font-size:.8rem;color:#625968}
+.report-share{display:flex;align-items:flex-start;gap:10px;margin:16px 0 0;font-size:.85rem;color:#625968;cursor:pointer}.report-share input{flex:none;width:18px;height:18px;margin:1px 0 0;accent-color:#2c2c2c}
 .report-error{margin:12px 0 0;color:#8a1c3a;font-size:.9rem}
 .report-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:18px}
 .report-actions .button{border:0;font:inherit;font-weight:700;cursor:pointer}.report-actions .button:disabled{opacity:.6;cursor:default}
