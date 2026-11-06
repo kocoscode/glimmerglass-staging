@@ -211,3 +211,31 @@ nav .nav-soon:last-child::after{left:auto;right:0;transform:none}
 @media(max-width:700px){.prose .connect-steps,.tools{grid-template-columns:minmax(0,1fr)}.prose .connect-steps{gap:20px}}
 /* Footer, every page: the credit on the first line (with the Motion switch at its far end where a page has one), the links in an even row under it. */
 footer{justify-content:flex-start;column-gap:28px;row-gap:10px}footer::before{content:"";flex-basis:100%;order:2}.footer-brand{order:0;margin-right:auto}footer .motion-toggle{order:1}footer>a{order:3}
+/* "Report a bug" (report.js): a link at the end of every footer opens this form over the page. Choices are pills, like
+   the Playback settings in the apps; one tap picks where it happened and what was being converted. */
+.report{width:min(560px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:26px 28px 24px;border:1px solid #fff;border-radius:24px;background:#f8f9fc;color:#2c2c2c;box-shadow:0 24px 80px #3a2c5a40}
+.report::backdrop{background:#2c2c2c59;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.report h2{font-size:2rem;margin:0}
+.report-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.report-close{flex:none;width:40px;height:40px;border:1px solid #2c2c2c26;border-radius:50%;background:#fff;color:#2c2c2c;font:400 1.5rem/1 Satoshi,system-ui,sans-serif;cursor:pointer}.report-close:hover{border-color:#2c2c2c55}
+.report-lede{margin:6px 0 4px;color:#625968;font-size:.95rem}
+.report fieldset{border:0;padding:0;margin:18px 0 0;min-width:0}
+.report legend,.report-label{display:block;padding:0;margin-bottom:8px;font-weight:700;font-size:.95rem}
+.report-optional{font-weight:400;color:#625968;margin-left:6px}
+.report-pills{display:flex;flex-wrap:wrap;gap:8px}
+.report-pill{position:relative;cursor:pointer}.report-pill input{position:absolute;opacity:0;width:1px;height:1px}
+.report-pill span{display:inline-block;padding:7px 14px;border:1px solid #2c2c2c26;border-radius:999px;background:#fff;font-size:.9rem;line-height:1.3}
+.report-pill:hover span{border-color:#2c2c2c55}.report-pill input:checked+span{background:#2c2c2c;border-color:#2c2c2c;color:#fff}
+.report-pill input:focus-visible+span{outline:3px solid #635477;outline-offset:2px}
+.report-field{display:block;margin-top:18px}
+.report textarea,.report input[type=email]{display:block;width:100%;padding:10px 12px;border:1px solid #2c2c2c26;border-radius:12px;background:#fff;color:#2c2c2c;font:inherit;font-size:.95rem}
+.report textarea{resize:vertical;min-height:120px}.report textarea:focus,.report input[type=email]:focus{outline:3px solid #635477;outline-offset:1px}
+.report-count{display:block;text-align:right;margin-top:4px;font-size:.8rem;color:#625968}
+.report-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.report-note{margin:14px 0 0;font-size:.8rem;color:#625968}
+.report-error{margin:12px 0 0;color:#8a1c3a;font-size:.9rem}
+.report-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:18px}
+.report-actions .button{border:0;font:inherit;font-weight:700;cursor:pointer}.report-actions .button:disabled{opacity:.6;cursor:default}
+.report-cancel{border:0;background:none;padding:8px 4px;color:#625968;font:inherit;font-weight:700;cursor:pointer}.report-cancel:hover{color:#2c2c2c}
+.report-done h2{margin-bottom:8px}.report-done p{color:#625968}.report-done .button{border:0;font:inherit;font-weight:700;cursor:pointer}
+@media(max-width:700px){.report{padding:22px 20px 20px}.report h2{font-size:1.7rem}}
