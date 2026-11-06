@@ -261,3 +261,9 @@ footer{justify-content:flex-start;column-gap:28px;row-gap:10px}footer::before{co
 .surface-media{display:flex;align-items:flex-end;justify-content:center;gap:20px}.surface-device{min-width:0}
 .surface-pair .surface-iphone{flex:574 1 0}.surface-pair .surface-duo{flex:844 1 0}.surface-ipad{width:min(100%,400px)}
 @media(max-width:700px){.surface,.surface-flip{grid-template-columns:1fr;gap:20px}.surface-flip .surface-copy{order:0}.surface-media{order:-1}.surface-flip .surface-media{order:-1}.surface-ipad{width:78%}}
+/* No picture in the Apple opening touches another or covers a word, whatever the wrap (owner, 6 Nov 2026; recipe/story-overlaps.mjs checks 360-1920 px). */
+.apple-story .o-box{--w:1.44em;--vw:1.19em;--vh:1.5em;--b:-.38em}
+.apple-story .o-gif{--w:1.36em;--vw:1.26em;--vh:1.26em;--b:-.4em}
+.apple-story .o-squirrel{--w:1.12em;--x:-.4em;--b:-.5em;--vw:2em;--vh:2em}
+.apple-story .device-slot{--vh:2.4em;margin:.12em 0 .22em}
+@media(max-width:700px){.apple-story .device-slot{--vh:2.3em;margin:.1em 0 .18em}}
