@@ -93,11 +93,12 @@ nav .nav-soon:focus-visible{outline:2px solid #122887;outline-offset:3px;border-
 .story .s.device-line{transition:opacity .9s ease}.story.playing:not(.done) .s.device-line:not(.in){filter:none}
 .apple-story .o-box{--w:1.56em;--x:.12em;--vw:1.32em;--vh:1.66em;--b:-.64em}.apple-story .o-box .vis{transform:rotate(-6deg)}.apple-story .clip-a.glitch .vis{animation-name:story-glitch-apple}@keyframes story-glitch-apple{0%{transform:rotate(-6deg)}20%{transform:rotate(-6deg) translate(-.05em,.02em);clip-path:inset(12% 0 38% 0)}40%{transform:rotate(-6deg) translate(.05em,-.02em);clip-path:inset(48% 0 6% 0)}60%{transform:rotate(-6deg);clip-path:none;filter:hue-rotate(60deg) saturate(1.6)}100%{transform:rotate(-6deg);filter:none}}.apple-story .clip-still{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}.apple-story .o-box video{position:relative}.apple-story .still-only video,.apple-story .still-only img.gif{visibility:hidden}.o-gif{--w:1.5em;--x:.04em;--b:-.5em;--vw:1.4em;--vh:1.4em}.o-gif .vis{transform:rotate(4deg)}.o-gif img{display:block;width:100%;height:100%;image-rendering:pixelated}
 .device-slot{--vw:calc(var(--vh) * var(--ar));--w:calc(var(--vw) + .35em);--x:.28em}
-/* devices stay upright: Apple marketing guidelines forbid tilting product images (owner asked; flagged 23 Oct) */
-.device-slot,.film-device{--device-tilt:0deg}.device-slot .vis,.film-device{transform:rotate(var(--device-tilt));filter:none}
-/* The devices are real inline boxes, about two lines tall: the line holding one grows to fit it, so it never covers a word and the other lines keep their spacing. iPhone and iPad stay on one line together (.devices). */
-.apple-story .device-slot{--vh:3em;--b:0;height:var(--vh);vertical-align:-.42em;margin-top:.2em}.apple-story .devices{white-space:nowrap}
-@media(max-width:700px){.apple-story .device-slot{--vh:2.7em}}
+/* Tilted at the owner's decision (6 Nov 2026), knowing Apple's marketing guidelines ask for upright product images (flagged 23 Oct). */
+.device-slot,.film-device{--device-tilt:0deg}.apple-story .o-iphone{--device-tilt:-6deg}.apple-story .devices .o-ipad{--device-tilt:5deg}.apple-story .o-ipad-play{--device-tilt:-4deg}.device-slot .vis,.film-device{transform:rotate(var(--device-tilt));filter:none}
+/* The devices are inline boxes centred on their line (owner, 6 Nov 2026): negative margins let them reach a little into the space between
+   lines, so the line grows only a little; gaps beside them are tight. iPhone and iPad stay on one line together (.devices). */
+.apple-story .device-slot{--vh:2.5em;--b:0;--w:calc(var(--vw) + .3em);--x:.15em;height:var(--vh);vertical-align:middle;margin:-.2em 0 -.3em}.apple-story .keep{white-space:nowrap}.apple-story .devices{white-space:nowrap}
+@media(max-width:700px){.apple-story .device-slot{--vh:2.3em;margin:-.16em 0 -.26em}}
 .app-film{display:flex;justify-content:center;margin:8px 0 48px}.film-device{position:relative;display:block;width:min(400px,72vw);aspect-ratio:var(--ar)}
 .device-screen{position:absolute;left:var(--sx);top:var(--sy);width:var(--sw);height:var(--sh);border-radius:var(--sr);overflow:hidden;background:var(--screen,#000)}
 .device-screen>img,.device-screen>video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}.device-screen>.screen-player{position:absolute;left:4%;bottom:-4.7%;width:92%;aspect-ratio:1}.device-screen>.screen-player img{display:block;width:100%;height:100%}
@@ -239,6 +240,24 @@ footer{justify-content:flex-start;column-gap:28px;row-gap:10px}footer::before{co
 .report-cancel{border:0;background:none;padding:8px 4px;color:#625968;font:inherit;font-weight:700;cursor:pointer}.report-cancel:hover{color:#2c2c2c}
 .report-done h2{margin-bottom:8px}.report-done p{color:#625968}.report-done .button{border:0;font:inherit;font-weight:700;cursor:pointer}
 @media(max-width:700px){.report{padding:22px 20px 20px}.report h2{font-size:1.7rem}}
-/* The app on three devices side by side, as tall as each other (flex grows by each file's width); on phones the iPad takes the first row. */
-.app-trio{flex-wrap:wrap;align-items:flex-end;gap:28px;max-width:960px;margin-left:auto;margin-right:auto}.trio-device{flex:var(--f) 1 0;min-width:0}.trio-iphone{--f:574}.trio-duo{--f:844}.trio-ipad{--f:924}
-@media(max-width:700px){.app-trio{gap:16px}.trio-ipad{flex:0 0 84%;order:-1}.trio-iphone{flex:0 0 34%}.trio-duo{flex:0 0 50%}}
+/* The made-up animation app on the opening iPad: a light toolbar, a tool rail, the canvas with the animation playing, and a timeline whose
+   playhead runs along the frames. Invented for the page; it copies no real app's look. */
+.mock-app{position:absolute;inset:0;display:block;background:#f3f1f6}
+.mock-bar{position:absolute;left:0;right:0;top:0;height:6%;display:flex;gap:4%;align-items:center;padding:0 6%;background:#fff;border-bottom:1px solid #e4e0ea}
+.mock-bar>span{display:block;width:5%;aspect-ratio:1;border-radius:50%;background:#cfc8da}.mock-bar>span:first-child{width:14%;aspect-ratio:auto;height:28%;border-radius:2em}
+.mock-tools{position:absolute;left:3%;top:22%;width:8%;display:flex;flex-direction:column;gap:6%;align-items:center;padding:3% 0;background:#fff;border-radius:2em;box-shadow:0 1px 3px #0001}
+.mock-tools>span{display:block;width:56%;aspect-ratio:1;border-radius:50%;background:#d9d3e3}.mock-tools>span:first-child{background:#7b6fd6}
+.mock-canvas{position:absolute;left:15%;right:4%;top:10%;bottom:22%;display:block;background:#fff;border-radius:3%;overflow:hidden}
+.mock-canvas>.screen-player{position:absolute;left:6%;right:6%;bottom:-2%;aspect-ratio:1}.mock-canvas>.screen-player img{display:block;width:100%;height:100%}
+.mock-timeline{position:absolute;left:4%;right:4%;bottom:4%;height:13%;display:flex;align-items:center;gap:3%;padding:0 3%;background:#fff;border-radius:6%/20%}
+.mock-play{flex:none;width:7%;aspect-ratio:1;background:#7b6fd6;clip-path:polygon(20% 10%,90% 50%,20% 90%)}
+.mock-frames{position:relative;flex:1;display:flex;gap:2%;height:60%}.mock-frames>span:not(.mock-head){flex:1;border-radius:12%;background:#ece8f2}
+.mock-head{position:absolute;top:-25%;bottom:-25%;left:0;width:2px;background:#e0567a;animation:mock-head 3s linear infinite}
+@keyframes mock-head{to{left:100%}}
+@media(prefers-reduced-motion:reduce){.mock-head{animation:none}}
+/* One section per surface: the words beside the devices (the iPad section mirrors it); on phones the devices come first. */
+.surface{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center;margin:0 0 24px}.surface-flip{grid-template-columns:1.15fr 1fr}.surface-flip .surface-copy{order:2}
+.surface h2{margin-top:0}.surface ul{padding-left:1.1em}.surface li{margin:.5em 0}
+.surface-media{display:flex;align-items:flex-end;justify-content:center;gap:20px}.surface-device{min-width:0}
+.surface-pair .surface-iphone{flex:574 1 0}.surface-pair .surface-duo{flex:844 1 0}.surface-ipad{width:min(100%,400px)}
+@media(max-width:700px){.surface,.surface-flip{grid-template-columns:1fr;gap:20px}.surface-flip .surface-copy{order:0}.surface-media{order:-1}.surface-flip .surface-media{order:-1}.surface-ipad{width:78%}}
