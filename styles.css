@@ -267,3 +267,4 @@ footer{justify-content:flex-start;column-gap:28px;row-gap:10px}footer::before{co
 .apple-story .o-squirrel{--w:1.12em;--x:-.4em;--b:-.5em;--vw:2em;--vh:2em}
 .apple-story .device-slot{--vh:2.4em;margin:.12em 0 .22em}
 @media(max-width:700px){.apple-story .device-slot{--vh:2.3em;margin:.1em 0 .18em}}
+.closing-actions{display:flex;flex-wrap:wrap;gap:12px}
