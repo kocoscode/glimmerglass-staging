@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Stacked video test</title>
+<style>
+  html { background: linear-gradient(135deg, #f6d9c8, #c9d8f5 50%, #d8f0d2); min-height: 100%; }
+  body { margin: 0; padding: 20px 16px 60px; font: 16px/1.4 -apple-system, system-ui, sans-serif; color: #1c1c22; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p { margin: 0 0 16px; max-width: 60ch; }
+  #stats { position: sticky; top: 0; background: rgba(255,255,255,.85); padding: 8px 12px; border-radius: 10px; font-variant-numeric: tabular-nums; margin-bottom: 20px; z-index: 2; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-items: end; }
+  figure { margin: 0; }
+  figcaption { font-size: 14px; margin-top: 6px; }
+  canvas.stacked { display: block; width: 100%; height: auto; }
+  video[data-stacked] { position: absolute; width: 2px; height: 2px; opacity: 0; pointer-events: none; }
+  .stripes { background: repeating-linear-gradient(45deg, #2b3a67 0 18px, #e9b44c 18px 36px); border-radius: 14px; padding: 10px; }
+</style>
+</head>
+<body>
+<h1>Stacked video test</h1>
+<p>Three animations, each one ordinary video file with the cut-out drawn on the page. The coloured background should show through around each one.</p>
+<div id="stats">Starting…</div>
+<div class="grid">
+  <figure><video data-stacked src="knight.mp4" muted loop playsinline autoplay preload="auto"></video><figcaption>Knight · 125 KB</figcaption></figure>
+  <figure><video data-stacked src="tree.mp4" muted loop playsinline autoplay preload="auto"></video><figcaption>Tree · 664 KB</figcaption></figure>
+  <figure><video data-stacked src="eagle.mp4" muted loop playsinline autoplay preload="auto"></video><figcaption>Eagle · 1.5 MB</figcaption></figure>
+  <figure class="stripes"><video data-stacked src="knight.mp4" muted loop playsinline autoplay preload="auto"></video><figcaption style="color:#fff">Knight over stripes</figcaption></figure>
+</div>
+<script src="stacked.js"></script>
+</body>
+</html>
